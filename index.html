@@ -203,11 +203,104 @@
 
         footer { text-align: center; padding: 3rem 2rem; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border-color); }
 
+        /* Table Styles */
+        .tables-section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tables-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .tables-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .table-container {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            overflow-x: auto;
+        }
+
+        .table-container h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--bg-dark);
+            color: var(--accent-blue);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        tr:hover {
+            background-color: rgba(88, 166, 255, 0.05);
+        }
+
+        .table-highlight {
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        .table-success {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .table-danger {
+            color: var(--danger);
+            font-weight: 600;
+        }
+
+        .table-warning {
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
             .mission-section, .service-row { flex-direction: column !important; }
             .service-row { gap: 2rem; }
             .nav-actions { flex-direction: column; gap: 1rem; }
+            
+            .table-container {
+                padding: 1rem;
+            }
+            
+            th, td {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
@@ -404,6 +497,311 @@
                     <span class="en">Our support does not end with an assessment. If critical vulnerabilities are discovered, we guide your team through remediation and designing a robust security framework.</span>
                 </p>
             </div>
+        </div>
+    </section>
+
+    <section class="tables-section">
+        <div class="tables-header">
+            <h2>
+                <span class="pt">Análise Comparativa</span>
+                <span class="en">Comparative Analysis</span>
+            </h2>
+            <p style="color: var(--text-muted);">
+                <span class="pt">Dados detalhados sobre maturidade, frameworks e serviços de cibersegurança.</span>
+                <span class="en">Detailed data on cybersecurity maturity, frameworks, and services.</span>
+            </p>
+        </div>
+
+        <!-- Table 1: Cybersecurity Maturity Levels -->
+        <div class="table-container">
+            <h3>
+                <span class="pt">Níveis de Maturidade em Cibersegurança</span>
+                <span class="en">Cybersecurity Maturity Levels</span>
+            </h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <span class="pt">Nível de Maturidade</span>
+                            <span class="en">Maturity Level</span>
+                        </th>
+                        <th>
+                            <span class="pt">Cibersegurança</span>
+                            <span class="en">Cybersecurity</span>
+                        </th>
+                        <th>
+                            <span class="pt">Ciber-resiliência</span>
+                            <span class="en">Cyber-resilience</span>
+                        </th>
+                        <th>
+                            <span class="pt">Ciber-ataques</span>
+                            <span class="en">Cyber-attacks</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="table-highlight">
+                            <span class="pt">Nível 1: Inicial</span>
+                            <span class="en">Level 1: Initial</span>
+                        </td>
+                        <td>
+                            <span class="pt">Reativo</span>
+                            <span class="en">Reactive</span>
+                        </td>
+                        <td>
+                            <span class="pt">Mínima</span>
+                            <span class="en">Minimal</span>
+                        </td>
+                        <td class="table-danger">
+                            <span class="pt">Alta vulnerabilidade</span>
+                            <span class="en">High vulnerability</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-highlight">
+                            <span class="pt">Nível 2: Repetitivo</span>
+                            <span class="en">Level 2: Repeatable</span>
+                        </td>
+                        <td>
+                            <span class="pt">Básico</span>
+                            <span class="en">Basic</span>
+                        </td>
+                        <td>
+                            <span class="pt">Limitada</span>
+                            <span class="en">Limited</span>
+                        </td>
+                        <td class="table-warning">
+                            <span class="pt">Vulnerabilidade moderada</span>
+                            <span class="en">Moderate vulnerability</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-highlight">
+                            <span class="pt">Nível 3: Definido</span>
+                            <span class="en">Level 3: Defined</span>
+                        </td>
+                        <td>
+                            <span class="pt">Proativo</span>
+                            <span class="en">Proactive</span>
+                        </td>
+                        <td>
+                            <span class="pt">Desenvolvida</span>
+                            <span class="en">Developed</span>
+                        </td>
+                        <td class="table-warning">
+                            <span class="pt">Vulnerabilidade controlada</span>
+                            <span class="en">Controlled vulnerability</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-highlight">
+                            <span class="pt">Nível 4: Gerido</span>
+                            <span class="en">Level 4: Managed</span>
+                        </td>
+                        <td>
+                            <span class="pt">Avançado</span>
+                            <span class="en">Advanced</span>
+                        </td>
+                        <td>
+                            <span class="pt">Robusta</span>
+                            <span class="en">Robust</span>
+                        </td>
+                        <td class="table-success">
+                            <span class="pt">Baixa vulnerabilidade</span>
+                            <span class="en">Low vulnerability</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-highlight">
+                            <span class="pt">Nível 5: Otimizado</span>
+                            <span class="en">Level 5: Optimized</span>
+                        </td>
+                        <td>
+                            <span class="pt">Preditivo</span>
+                            <span class="en">Predictive</span>
+                        </td>
+                        <td>
+                            <span class="pt">Máxima</span>
+                            <span class="en">Maximum</span>
+                        </td>
+                        <td class="table-success">
+                            <span class="pt">Vulnerabilidade mínima</span>
+                            <span class="en">Minimal vulnerability</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Table 2: Framework Comparison -->
+        <div class="table-container">
+            <h3>
+                <span class="pt">Comparação de Frameworks de Segurança</span>
+                <span class="en">Security Framework Comparison</span>
+            </h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <span class="pt">Framework</span>
+                            <span class="en">Framework</span>
+                        </th>
+                        <th>
+                            <span class="pt">Foco Principal</span>
+                            <span class="en">Main Focus</span>
+                        </th>
+                        <th>
+                            <span class="pt">Complexidade</span>
+                            <span class="en">Complexity</span>
+                        </th>
+                        <th>
+                            <span class="pt">Certificação</span>
+                            <span class="en">Certification</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="table-highlight">NIST CSF</td>
+                        <td>
+                            <span class="pt">Gestão de risco</span>
+                            <span class="en">Risk management</span>
+                        </td>
+                        <td>
+                            <span class="pt">Média</span>
+                            <span class="en">Medium</span>
+                        </td>
+                        <td class="table-success">
+                            <span class="pt">Oficial</span>
+                            <span class="en">Official</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-highlight">ISO 27001</td>
+                        <td>
+                            <span class="pt">Sistema de gestão</span>
+                            <span class="en">Management system</span>
+                        </td>
+                        <td>
+                            <span class="pt">Alta</span>
+                            <span class="en">High</span>
+                        </td>
+                        <td class="table-success">
+                            <span class="pt">Oficial</span>
+                            <span class="en">Official</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-highlight">CIS Controls</td>
+                        <td>
+                            <span class="pt">Controlos técnicos</span>
+                            <span class="en">Technical controls</span>
+                        </td>
+                        <td>
+                            <span class="pt">Baixa</span>
+                            <span class="en">Low</span>
+                        </td>
+                        <td class="table-warning">
+                            <span class="pt">Voluntária</span>
+                            <span class="en">Voluntary</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Table 3: Service Comparison -->
+        <div class="table-container">
+            <h3>
+                <span class="pt">Comparação de Serviços CyberCrow</span>
+                <span class="en">CyberCrow Service Comparison</span>
+            </h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <span class="pt">Serviço</span>
+                            <span class="en">Service</span>
+                        </th>
+                        <th>
+                            <span class="pt">Automação</span>
+                            <span class="en">Automation</span>
+                        </th>
+                        <th>
+                            <span class="pt">Relatório</span>
+                            <span class="en">Reporting</span>
+                        </th>
+                        <th>
+                            <span class="pt">Consultoria</span>
+                            <span class="en">Consultancy</span>
+                        </th>
+                        <th>
+                            <span class="pt">Formação</span>
+                            <span class="en">Training</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="table-highlight">
+                            <span class="pt">Auditoria Básica</span>
+                            <span class="en">Basic Audit</span>
+                        </td>
+                        <td class="table-success">100%</td>
+                        <td class="table-success">
+                            <span class="pt">Completo</span>
+                            <span class="en">Complete</span>
+                        </td>
+                        <td class="table-danger">
+                            <span class="pt">Não</span>
+                            <span class="en">No</span>
+                        </td>
+                        <td class="table-danger">
+                            <span class="pt">Não</span>
+                            <span class="en">No</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-highlight">
+                            <span class="pt">Auditoria Avançada</span>
+                            <span class="en">Advanced Audit</span>
+                        </td>
+                        <td class="table-success">100%</td>
+                        <td class="table-success">
+                            <span class="pt">Completo</span>
+                            <span class="en">Complete</span>
+                        </td>
+                        <td class="table-success">
+                            <span class="pt">Sim</span>
+                            <span class="en">Yes</span>
+                        </td>
+                        <td class="table-danger">
+                            <span class="pt">Não</span>
+                            <span class="en">No</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-highlight">
+                            <span class="pt">Solução Completa</span>
+                            <span class="en">Complete Solution</span>
+                        </td>
+                        <td class="table-success">100%</td>
+                        <td class="table-success">
+                            <span class="pt">Completo</span>
+                            <span class="en">Complete</span>
+                        </td>
+                        <td class="table-success">
+                            <span class="pt">Sim</span>
+                            <span class="en">Yes</span>
+                        </td>
+                        <td class="table-success">
+                            <span class="pt">Sim</span>
+                            <span class="en">Yes</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </section>
 
