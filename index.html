@@ -6,343 +6,7 @@
     <title>CyberCrow</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Variáveis de Cor do CyberCrow */
-        :root {
-            --bg-dark: #0d1117;
-            --bg-card: #161b22;
-            --border-color: #30363d;
-            --text-main: #e6f1ff;
-            --text-muted: #8b949e;
-            --accent-blue: #58a6ff;
-            --accent-hover: #3b82f6;
-            --danger: #ef4444;
-            --success: #10b981;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
-
-        /* Lógica de Troca de Idioma via CSS */
-        html[lang="pt"] .en { display: none !important; }
-        html[lang="en"] .pt { display: none !important; }
-
-        /* Navbar */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 5%;
-            border-bottom: 1px solid var(--border-color);
-            background-color: rgba(13, 17, 23, 0.95);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        /* Estilo para a imagem do logótipo */
-        .logo-img {
-            height: 35px; /* Ajuste a altura conforme necessário */
-            width: auto;
-            display: block;
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        /* Botão de Idioma */
-        .lang-switch {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            padding: 6px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .lang-switch:hover {
-            border-color: var(--accent-blue);
-            color: var(--accent-blue);
-        }
-
-        .btn-back {
-            background-color: transparent;
-            color: var(--accent-blue);
-            border: 1px solid var(--accent-blue);
-            padding: 8px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .btn-back:hover {
-            background-color: var(--accent-blue);
-            color: var(--bg-dark);
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 6rem 2rem;
-            background: radial-gradient(circle at top, rgba(88, 166, 255, 0.1) 0%, transparent 50%);
-        }
-
-        .hero h1 { font-size: 3rem; margin-bottom: 1rem; letter-spacing: -1px; }
-        .hero h1 span { color: var(--accent-blue); }
-        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 2rem auto; }
-
-        /* Seção da Missão */
-        .mission-section {
-            padding: 4rem 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .mission-content { flex: 1; min-width: 300px; }
-        .mission-content h2 { font-size: 2rem; margin-bottom: 1.5rem; color: var(--accent-blue); }
-        .mission-content p { margin-bottom: 1.5rem; font-size: 1.1rem; color: var(--text-muted); }
-        
-        .mission-stats {
-            flex: 1; min-width: 300px;
-            display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
-        }
-
-        .stat-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 2rem; border-radius: 12px;
-            text-align: center; transition: transform 0.3s ease;
-        }
-        .stat-card:hover { transform: translateY(-5px); border-color: var(--accent-blue); }
-        .stat-number { font-size: 2.5rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem; }
-        .stat-label { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
-
-        /* Secções de Serviços */
-        .services-section { padding: 5rem 5%; max-width: 1200px; margin: 0 auto; }
-        .services-header { text-align: center; margin-bottom: 4rem; max-width: 800px; margin-left: auto; margin-right: auto; }
-        .services-header h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-
-        .service-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4rem; margin-bottom: 5rem; }
-        .service-row:nth-child(even) { flex-direction: row-reverse; }
-        .service-text { flex: 1; min-width: 300px; }
-        .service-text h3 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--text-main); }
-        .service-text p { color: var(--text-muted); margin-bottom: 1rem; font-size: 1.05rem; }
-
-        .service-visual {
-            flex: 1; min-width: 300px; background: var(--bg-card);
-            border: 1px solid var(--border-color); border-radius: 16px;
-            padding: 4rem 2rem; text-align: center; position: relative; overflow: hidden;
-        }
-        .service-visual::before {
-            content: ''; position: absolute; top: -50px; left: -50px;
-            width: 150px; height: 150px; background: var(--accent-blue);
-            filter: blur(80px); opacity: 0.2;
-        }
-        .service-visual i { font-size: 5rem; color: var(--accent-blue); }
-
-        /* Grid de Pilares */
-        .pillars-section {
-            background-color: var(--bg-card); padding: 5rem 5%;
-            border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);
-        }
-        .pillars-header { text-align: center; margin-bottom: 4rem; }
-        .pillars-header h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-
-        .pillars-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem; max-width: 1200px; margin: 0 auto;
-        }
-        .pillar-card {
-            background-color: var(--bg-dark); border: 1px solid var(--border-color);
-            padding: 2.5rem 2rem; border-radius: 12px; text-align: left;
-        }
-        .pillar-icon { font-size: 2.5rem; color: var(--accent-blue); margin-bottom: 1.5rem; }
-        .pillar-card h3 { font-size: 1.3rem; margin-bottom: 1rem; }
-        .pillar-card p { color: var(--text-muted); font-size: 0.95rem; }
-
-        /* CTA Section */
-        .cta-section { text-align: center; padding: 6rem 2rem; background: radial-gradient(circle at bottom, rgba(88, 166, 255, 0.1) 0%, transparent 60%); }
-        .cta-section h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
-        
-        .btn-primary {
-            background-color: var(--accent-blue); color: var(--bg-dark);
-            padding: 12px 24px; border-radius: 6px; text-decoration: none;
-            font-weight: 700; font-size: 1.1rem; display: inline-block; transition: all 0.3s ease;
-        }
-        .btn-primary:hover { background-color: var(--accent-hover); transform: scale(1.05); }
-
-        footer { text-align: center; padding: 3rem 2rem; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border-color); }
-
-        /* Table Image Styles */
-        .table-images-section {
-            padding: 5rem 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .table-images-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .table-images-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent-blue);
-        }
-
-        .table-image-container {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        .table-image-container h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-main);
-        }
-
-        .table-image-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Table Styles */
-        .tables-section {
-            padding: 5rem 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .tables-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .tables-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent-blue);
-        }
-
-        .table-container {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-            overflow-x: auto;
-        }
-
-        .table-container h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-main);
-            text-align: center;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 1rem;
-        }
-
-        th, td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        th {
-            background-color: var(--bg-dark);
-            color: var(--accent-blue);
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        td {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        tr:hover {
-            background-color: rgba(88, 166, 255, 0.05);
-        }
-
-        .table-highlight {
-            color: var(--accent-blue);
-            font-weight: 600;
-        }
-
-        .table-success {
-            color: var(--success);
-            font-weight: 600;
-        }
-
-        .table-danger {
-            color: var(--danger);
-            font-weight: 600;
-        }
-
-        .table-warning {
-            color: #f59e0b;
-            font-weight: 600;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .mission-section, .service-row { flex-direction: column !important; }
-            .service-row { gap: 2rem; }
-            .nav-actions { flex-direction: column; gap: 1rem; }
-            
-            .table-container {
-                padding: 1rem;
-            }
-            
-            th, td {
-                padding: 0.75rem 0.5rem;
-                font-size: 0.85rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -358,34 +22,59 @@
     </nav>
 
     <section class="hero">
-        <h1>
-            <span class="pt">Eyes on the Web</span>
-            <span class="en">Eyes on the Web</span>
-        </h1>
-        <p>
-            <span class="pt">No atual cenário hiperconectado, a cibersegurança não é um luxo, é um requisito de sobrevivência. O CyberCrow fornece um ecossistema completo de avaliação, certificação e formação para pequenas e médias empresas.</span>
-            <span class="en">In today’s hyper-connected digital landscape, cybersecurity is no longer a luxury — it is a fundamental requirement for survival. CyberCrow provides a complete ecosystem of evaluation, certification, and training for small and medium enterprises.</span>
-        </p>
+        <div class="hero-content">
+            <h1>
+                <span class="pt">Proteção Digital Inteligente</span>
+                <span class="en">Smart Digital Protection</span>
+            </h1>
+            <div class="hero-tech-grid">
+                <div class="tech-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span class="tech-label">
+                        <span class="pt">Automação Avançada</span>
+                        <span class="en">Advanced Automation</span>
+                    </span>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-brain"></i>
+                    <span class="tech-label">
+                        <span class="pt">IA Preditiva</span>
+                        <span class="en">Predictive AI</span>
+                    </span>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-lock"></i>
+                    <span class="tech-label">
+                        <span class="pt">Criptografia Quântica</span>
+                        <span class="en">Quantum Cryptography</span>
+                    </span>
+                </div>
+            </div>
+            <p>
+                <span class="pt">Na era digital, a segurança não é uma opção - é a sua maior vantagem competitiva. O CyberCrow transforma a cibersegurança complexa em poder simples e acessível para o seu negócio crescer com confiança.</span>
+                <span class="en">In digital age, security isn't an option - it's your competitive advantage. CyberCrow transforms complex cybersecurity into simple, accessible power that lets your business grow with confidence.</span>
+            </p>
+        </div>
     </section>
 
     <section class="mission-section">
         <div class="mission-content">
             <h2>
-                <span class="pt">A Nossa Contribuição</span>
-                <span class="en">Our Value Proposition</span>
+                <span class="pt">Segurança de Nível Enterprise, Preço de PME</span>
+                <span class="en">Enterprise-Level Security, SME Price</span>
             </h2>
             <p>
-                <span class="pt">Pequenas e médias empresas enfrentam um desafio injusto: cumprir os mesmos padrões rigorosos de segurança e conformidade das gigantes da indústria, mas sem orçamentos milionários ou equipas especializadas.</span>
-                <span class="en">Small and medium-sized enterprises face an unfair challenge: meeting the same rigorous security and compliance standards as industry giants, but without million-dollar budgets or highly specialized in-house teams.</span>
+                <span class="pt">Por que é que as PMEs devem escolher entre segurança e crescimento? As grandes corporações gastam milhões em proteção digital, enquanto as pequenas e médias empresas enfrentam as mesmas ameaças com orçamentos limitados.</span>
+                <span class="en">Why should SMEs choose between security and growth? Large corporations spend millions on digital protection, while small and medium enterprises face the same threats with limited budgets.</span>
             </p>
             <p>
-                <span class="pt">O <strong>CyberCrow</strong> resolve esta lacuna. Combinamos a rapidez de ferramentas automatizadas com a precisão de uma auditoria profunda à sua arquitetura tecnológica. Não procuramos apenas vulnerabilidades genéricas; avaliamos e protegemos a sua infraestrutura específica.</span>
-                <span class="en"><strong>CyberCrow</strong> bridges this gap. We combine the speed of automated tools with the precision of a deep audit into your technological architecture. We don't just scan for generic vulnerabilities; we evaluate and protect your specific infrastructure.</span>
+                <span class="pt">O <strong>CyberCrow</strong> democratiza a cibersegurança. Fundimos a velocidade da automação com a inteligência de auditorias especializadas, criando um escudo digital que se adapta perfeitamente ao seu negócio.</span>
+                <span class="en"><strong>CyberCrow</strong> democratizes cybersecurity. We fuse the speed of automation with the intelligence of specialized audits, creating a digital shield that perfectly adapts to your business.</span>
             </p>
             <p style="color: var(--accent-blue); font-weight: 600;">
                 <i class="fas fa-shield-alt"></i> 
-                <span class="pt">Uma abordagem de ponta a ponta: Auditoria, Certificação e Capacitação.</span>
-                <span class="en">An end-to-end approach: Audit, Certification, and Empowerment.</span>
+                <span class="pt">Três pilares para o seu sucesso: Auditoria Inteligente, Certificação Confiável e Capacitação Contínua.</span>
+                <span class="en">Three pillars for your success: Smart Auditing, Trusted Certification, and Continuous Empowerment.</span>
             </p>
         </div>
         <div class="mission-stats">
@@ -427,28 +116,28 @@
     <section class="services-section">
         <div class="services-header">
             <h2>
-                <span class="pt">Além do Scanning Tradicional</span>
-                <span class="en">Beyond Traditional Scanning</span>
+                <span class="pt">Segurança que Evolui com o Seu Negócio</span>
+                <span class="en">Security that Evolves with Your Business</span>
             </h2>
-            <p style="color: var(--text-muted);">
-                <span class="pt">Como transformamos a cibersegurança num ativo interno sustentável em vez de uma despesa constante.</span>
-                <span class="en">How we transform cybersecurity into a sustainable internal asset instead of a constant financial drain.</span>
+            <p>
+                <span class="pt">Transformamos a cibersegurança de centro de custo em motor de crescimento, criando valor sustentável para o seu negócio.</span>
+                <span class="en">We transform cybersecurity from a cost center into a growth engine, creating sustainable value for your business.</span>
             </p>
         </div>
 
         <div class="service-row">
             <div class="service-text">
                 <h3>
-                    <span class="pt">Avaliação Profunda e Certificação</span>
-                    <span class="en">Deep Evaluation and Certification</span>
+                    <span class="pt">Auditoria Inteligente & Certificação Premium</span>
+                    <span class="en">Smart Auditing & Premium Certification</span>
                 </h3>
                 <p>
-                    <span class="pt">Nenhuma "tech stack" é igual a outra. É por isso que o nosso motor de avaliação se adapta diretamente às linguagens, frameworks e infraestrutura da sua empresa.</span>
-                    <span class="en">No "tech stack" is exactly the same. That is why our evaluation engine adapts directly to the specific languages, frameworks, and infrastructure of your company.</span>
+                    <span class="pt">Cada negócio é único. O nosso motor de avaliação aprende a sua arquitetura tecnológica e adapta-se às suas linguagens, frameworks e infraestrutura específicos.</span>
+                    <span class="en">Every business is unique. Our evaluation engine learns your technology architecture and adapts to your specific languages, frameworks, and infrastructure.</span>
                 </p>
                 <p>
-                    <span class="pt">Mapeamos a topologia da sua rede, auditamos a implementação prática de criptografia (como as chaves são geradas, guardadas e utilizadas) e atribuímos um <strong>Quality Score</strong> quantificável. Emitimos um certificado oficial que comprova a sua postura de segurança.</span>
-                    <span class="en">We map your network topology, audit the practical implementation of cryptography (how keys are generated, stored, and utilized), and assign a quantifiable <strong>Quality Score</strong>. We issue an official certificate proving your security posture.</span>
+                    <span class="pt">Mapeamos a sua rede em 360°, auditamos criptografia ao nível de implementação e atribuímos um <strong>Security Score</strong> que os seus clientes confiam. Resultado: uma certificação que abre portas e fecha brechas.</span>
+                    <span class="en">We map your network 360°, audit encryption at implementation level, and assign a <strong>Security Score</strong> your clients trust. Result: certification that opens doors and closes gaps.</span>
                 </p>
             </div>
             <div class="service-visual">
@@ -459,16 +148,16 @@
         <div class="service-row">
             <div class="service-text">
                 <h3>
-                    <span class="pt">Formação de Equipas de Desenvolvimento</span>
-                    <span class="en">Development Team Training</span>
+                    <span class="pt">Capacitação Avançada da Sua Equipa</span>
+                    <span class="en">Advanced Team Empowerment</span>
                 </h3>
                 <p>
-                    <span class="pt">Identificar uma falha é apenas o primeiro passo. Prevenir que volte a acontecer é onde as PMEs têm maior dificuldade. Em vez de contratar engenheiros de segurança externos dispendiosos, o CyberCrow <strong>capacita o talento que já tem</strong>.</span>
-                    <span class="en">Identifying a security flaw is only the first step. Preventing it from happening again is where SMEs struggle. Instead of hiring expensive external security engineers, CyberCrow <strong>empowers the talent you already have</strong>.</span>
+                    <span class="pt">Encontrar uma vulnerabilidade é o início. Evitar que ela reapareça é onde a mágica acontece. Em vez de gastar fortunas em consultores externos, transformamos a sua equipa numa força de segurança interna.</span>
+                    <span class="en">Finding a vulnerability is just the beginning. Preventing its return is where the magic happens. Instead of spending fortunes on external consultants, we transform your team into an internal security force.</span>
                 </p>
                 <p>
-                    <span class="pt">Com base nas vulnerabilidades exatas descobertas durante a nossa auditoria, fornecemos módulos de formação técnica personalizados. Ensinamos a sua equipa a implementar práticas de "secure coding", corrigir erros criptográficos e manter a conformidade.</span>
-                    <span class="en">Based on the specific vulnerabilities discovered during our audit, we deliver custom technical training modules. We teach your team how to implement secure coding practices natively, patch cryptographic errors, and maintain compliance.</span>
+                    <span class="pt">Com base nas falhas reais que descobrimos, criamos programas de formação sob medida. Sua equipa aprenderá a escrever código seguro por instinto, corrigir erros criptográficos e manter conformidade automaticamente.</span>
+                    <span class="en">Based on the real flaws we discover, we create tailored training programs. Your team will learn to write secure code by instinct, fix cryptographic errors, and maintain compliance automatically.</span>
                 </p>
             </div>
             <div class="service-visual">
@@ -480,12 +169,12 @@
     <section class="pillars-section">
         <div class="pillars-header">
             <h2>
-                <span class="pt">Os 4 Pilares da Plataforma</span>
-                <span class="en">The 4 Pillars of the Platform</span>
+                <span class="pt">A Tecnologia por Trás da Sua Proteção</span>
+                <span class="en">The Technology Behind Your Protection</span>
             </h2>
-            <p style="color: var(--text-muted);">
-                <span class="pt">A base tecnológica que suporta os nossos serviços de auditoria e consultoria.</span>
-                <span class="en">The technological foundation that supports our auditing and consulting services.</span>
+            <p>
+                <span class="pt">Inovação cutting-edge que alimenta os nossos serviços de auditoria e consultoria de elite.</span>
+                <span class="en">Cutting-edge innovation powering our elite auditing and consulting services.</span>
             </p>
         </div>
         
@@ -493,48 +182,48 @@
             <div class="pillar-card">
                 <div class="pillar-icon"><i class="fas fa-radar"></i></div>
                 <h3>
-                    <span class="pt">Visibilidade Total</span>
-                    <span class="en">Total Visibility</span>
+                    <span class="pt">Visibilidade 360°</span>
+                    <span class="en">360° Visibility</span>
                 </h3>
                 <p>
-                    <span class="pt">Não pode proteger o que não consegue ver. Mapeamento automático em tempo real de todos os ativos da rede, identificando vetores de ataque abertos e firewalls mal configuradas.</span>
-                    <span class="en">You cannot protect what you cannot see. Automatic real-time mapping of all network assets, identifying open attack vectors and misconfigured firewalls.</span>
+                    <span class="pt">Proteja o que importa. O nosso radar digital mapeia cada ativo da sua rede em tempo real, revelando vulnerabilidades ocultas e fortificando pontos fracos antes que os atacantes os encontrem.</span>
+                    <span class="en">Protect what matters. Our digital radar maps every network asset in real-time, revealing hidden vulnerabilities and fortifying weak points before attackers find them.</span>
                 </p>
             </div>
             
             <div class="pillar-card">
                 <div class="pillar-icon"><i class="fas fa-key"></i></div>
                 <h3>
-                    <span class="pt">Auditoria Criptográfica</span>
-                    <span class="en">Cryptographic Audit</span>
+                    <span class="pt">Criptografia Militar</span>
+                    <span class="en">Military-Grade Cryptography</span>
                 </h3>
                 <p>
-                    <span class="pt">Usar cifras fortes é apenas metade da batalha. Avaliamos rigorosamente como os protocolos criptográficos são implementados para garantir que os sistemas não falham na base.</span>
-                    <span class="en">Using strong encryption is only half the battle. We rigorously evaluate how cryptographic protocols are implemented to ensure systems do not fail at the implementation stage.</span>
+                    <span class="pt">Cifras fortes não são suficientes. Nossos peritos auditam cada linha de implementação criptográfica, garantindo que os seus dados estejam blindados contra as ameaças mais sofisticadas.</span>
+                    <span class="en">Strong ciphers aren't enough. Our experts audit every line of cryptographic implementation, ensuring your data is armored against the most sophisticated threats.</span>
                 </p>
             </div>
             
             <div class="pillar-card">
                 <div class="pillar-icon"><i class="fas fa-robot"></i></div>
                 <h3>
-                    <span class="pt">IA Translacional</span>
-                    <span class="en">Translational AI</span>
+                    <span class="pt">Inteligência Artificial Preditiva</span>
+                    <span class="en">Predictive Artificial Intelligence</span>
                 </h3>
                 <p>
-                    <span class="pt">Fim das pesquisas inacabáveis por informação importante. Os nossos motores analisam falhas complexas e traduzem o impacto real para o negócio, separando o ruído do risco prático.</span>
-                    <span class="en">The end of indecipherable technical jargon. Our engines analyze complex technical data and translate the real business impact, separating noise from actionable intelligence.</span>
+                    <span class="pt">Acabe com o jargão técnico. A nossa IA traduz falhas complexas em impacto de negócio claro, transformando dados confusos em inteligência acionável que protege o seu futuro.</span>
+                    <span class="en">End the technical jargon. Our AI translates complex flaws into clear business impact, turning confusing data into actionable intelligence that protects your future.</span>
                 </p>
             </div>
             
             <div class="pillar-card">
                 <div class="pillar-icon"><i class="fas fa-hands-helping"></i></div>
                 <h3>
-                    <span class="pt">Consultoria Dedicada</span>
-                    <span class="en">Dedicated Consultancy</span>
+                    <span class="pt">Parceria Estratégica Contínua</span>
+                    <span class="en">Continuous Strategic Partnership</span>
                 </h3>
                 <p>
-                    <span class="pt">O nosso suporte não termina na avaliação. Se o seu negócio descobrir vulnerabilidades críticas, guiamos a sua equipa na remediação e no design de uma infraestrutura robusta.</span>
-                    <span class="en">Our support does not end with an assessment. If critical vulnerabilities are discovered, we guide your team through remediation and designing a robust security framework.</span>
+                    <span class="pt">A nossa missão não termina no relatório. Se encontrarmos riscos críticos, a nossa equipa trabalha lado a lado com a sua para construir fortalezas digitais que resistem ao teste do tempo.</span>
+                    <span class="en">Our mission doesn't end with the report. If we find critical risks, our team works side-by-side with yours to build digital fortresses that stand the test of time.</span>
                 </p>
             </div>
         </div>
@@ -543,12 +232,12 @@
     <section class="tables-section">
         <div class="tables-header">
             <h2>
-                <span class="pt">Análise Comparativa</span>
-                <span class="en">Comparative Analysis</span>
+                <span class="pt">Inteligência Competitiva em Cibersegurança</span>
+                <span class="en">Competitive Intelligence in Cybersecurity</span>
             </h2>
-            <p style="color: var(--text-muted);">
-                <span class="pt">Dados detalhados sobre maturidade, frameworks e serviços de cibersegurança.</span>
-                <span class="en">Detailed data on cybersecurity maturity, frameworks, and services.</span>
+            <p>
+                <span class="pt">Dados estratégicos para posicionar o seu negócio na vanguarda da segurança digital.</span>
+                <span class="en">Strategic data to position your business at the forefront of digital security.</span>
             </p>
         </div>
 
@@ -848,42 +537,641 @@
     <section class="table-images-section">
         <div class="table-images-header">
             <h2>
-                <span class="pt">Tabelas de Análise</span>
-                <span class="en">Analysis Tables</span>
+                <span class="pt">Visualizações Estratégicas</span>
+                <span class="en">Strategic Visualizations</span>
             </h2>
-            <p style="color: var(--text-muted);">
-                <span class="pt">Visualizações detalhadas de dados de cibersegurança e frameworks.</span>
-                <span class="en">Detailed visualizations of cybersecurity data and frameworks.</span>
+            <p>
+                <span class="pt">Insights visuais que transformam dados complexos em estratégias acionáveis para o seu negócio.</span>
+                <span class="en">Visual insights that transform complex data into actionable strategies for your business.</span>
             </p>
         </div>
 
-        <!-- Table Image 1 -->
-        <div class="table-image-container">
+        <!-- Pricing Plans Table -->
+        <div class="table-container">
             <h3>
-                <span class="pt">Níveis de Maturidade em Cibersegurança</span>
-                <span class="en">Cybersecurity Maturity Levels</span>
+                <span class="pt">Planos e Preços</span>
+                <span class="en">Plans and Pricing</span>
             </h3>
-            <img src="tabela1.png" alt="Cybersecurity Maturity Levels Table">
+            <div class="pricing-table-wrapper">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="pt">Planos</span>
+                                <span class="en">Plans</span>
+                            </th>
+                            <th>p1</th>
+                            <th>p2 (<span class="pt">Mensal</span><span class="en">Monthly</span>)</th>
+                            <th>p2 (<span class="pt">Anual</span><span class="en">Annual</span>)</th>
+                            <th>p3 (<span class="pt">Mensal</span><span class="en">Monthly</span>)</th>
+                            <th>p3 (<span class="pt">Anual</span><span class="en">Annual</span>)</th>
+                            <th>p4 (<span class="pt">Mensal</span><span class="en">Monthly</span>)</th>
+                            <th>p4 (<span class="pt">Anual</span><span class="en">Annual</span>)</th>
+                            <th>p5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight">
+                            <td><strong>
+                                <span class="pt">Nome</span>
+                                <span class="en">Name</span>
+                            </strong></td>
+                            <td>Free</td>
+                            <td>Flyght</td>
+                            <td>Flyght</td>
+                            <td>Crow</td>
+                            <td>Crow</td>
+                            <td>Nest</td>
+                            <td>Nest</td>
+                            <td>Business Flock</td>
+                        </tr>
+                        <tr>
+                            <td><strong>
+                                <span class="pt">Preço</span>
+                                <span class="en">Price</span>
+                            </strong></td>
+                            <td>0€</td>
+                            <td>19,99€</td>
+                            <td>219,99€</td>
+                            <td>129,99€</td>
+                            <td>1 429,99€</td>
+                            <td>449,99€</td>
+                            <td>5 499,99€</td>
+                            <td>(> 2 500€) <span class="pt">Ao infinito e mais além</span><span class="en">To infinity and beyond</span></td>
+                        </tr>
+                        <tr class="highlight">
+                            <td><strong>
+                                <span class="pt">Alvo</span>
+                                <span class="en">Target</span>
+                            </strong></td>
+                            <td>
+                                <span class="pt">Utilizador Doméstico / Estudante</span>
+                                <span class="en">Home User / Student</span>
+                            </td>
+                            <td>
+                                <span class="pt">Profissional de TI / Freelancer</span>
+                                <span class="en">IT Professional / Freelancer</span>
+                            </td>
+                            <td>
+                                <span class="pt">Profissional de TI / Freelancer</span>
+                                <span class="en">IT Professional / Freelancer</span>
+                            </td>
+                            <td>
+                                <span class="pt">Profissional Avançado / Pequenas Empresas</span>
+                                <span class="en">Advanced Professional / Small Businesses</span>
+                            </td>
+                            <td>
+                                <span class="pt">Profissional Avançado / Pequenas Empresas</span>
+                                <span class="en">Advanced Professional / Small Businesses</span>
+                            </td>
+                            <td>
+                                <span class="pt">Médias/Grandes Empresas (&lt;100 Emp.)</span>
+                                <span class="en">Medium/Large Companies (&lt;100 Emp.)</span>
+                            </td>
+                            <td>
+                                <span class="pt">Médias/Grandes Empresas (&lt;100 Emp.)</span>
+                                <span class="en">Medium/Large Companies (&lt;100 Emp.)</span>
+                            </td>
+                            <td>
+                                <span class="pt">Médias e Grandes Organizações / Instituições de Ensino (&gt;100 Emp.)</span>
+                                <span class="en">Medium and Large Organizations / Educational Institutions (&gt;100 Emp.)</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="9" class="section-header">
+                                <span class="pt">FUNÇÕES</span>
+                                <span class="en">FEATURES</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Velocidade de wi-fi</span>
+                                <span class="en">Wi-Fi speed</span>
+                            </td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Histórico de velocidade</span>
+                                <span class="en">Speed history</span>
+                            </td>
+                            <td>
+                                <i class="fas fa-check" style="color: var(--success);"></i>
+                                <span class="limit">(&lt;10)</span>
+                            </td>
+                            <td>
+                                <i class="fas fa-check" style="color: var(--success);"></i>
+                                <span class="limit">(&lt;50)</span>
+                            </td>
+                            <td>
+                                <i class="fas fa-check" style="color: var(--success);"></i>
+                                <span class="limit">(&lt;50)</span>
+                            </td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Scanner de Rede</span>
+                                <span class="en">Network Scanner</span>
+                            </td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td>
+                                <i class="fas fa-check" style="color: var(--success);"></i>
+                                <span class="limit">(5)</span>
+                            </td>
+                            <td>
+                                <i class="fas fa-check" style="color: var(--success);"></i>
+                                <span class="limit">(5)</span>
+                            </td>
+                            <td>
+                                <i class="fas fa-check" style="color: var(--success);"></i>
+                                <span class="limit">(50)</span>
+                            </td>
+                            <td>
+                                <i class="fas fa-check" style="color: var(--success);"></i>
+                                <span class="limit">(50)</span>
+                            </td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Análise de Vulnerabilidades (Websites)</span>
+                                <span class="en">Vulnerability Analysis (Websites)</span>
+                            </td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td>
+                                <i class="fas fa-check" style="color: var(--success);"></i>
+                                <span class="limit">(1/week)</span>
+                            </td>
+                            <td>
+                                <i class="fas fa-check" style="color: var(--success);"></i>
+                                <span class="limit">(1/week)</span>
+                            </td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Análise de Vulnerabilidades (Redes)</span>
+                                <span class="en">Vulnerability Analysis (Networks)</span>
+                            </td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td>
+                                <i class="fas fa-check" style="color: var(--success);"></i>
+                                <span class="limit">(1/week)</span>
+                            </td>
+                            <td>
+                                <i class="fas fa-check" style="color: var(--success);"></i>
+                                <span class="limit">(1/week)</span>
+                            </td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Relatórios PDF</span>
+                                <span class="en">PDF Reports</span>
+                            </td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Histórico de análises</span>
+                                <span class="en">Analysis History</span>
+                            </td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td>
+                                <i class="fas fa-check" style="color: var(--success);"></i>
+                                <span class="limit">(&lt;5)</span>
+                            </td>
+                            <td>
+                                <i class="fas fa-check" style="color: var(--success);"></i>
+                                <span class="limit">(&lt;5)</span>
+                            </td>
+                            <td>
+                                <i class="fas fa-check" style="color: var(--success);"></i>
+                                <span class="limit">(&lt;50)</span>
+                            </td>
+                            <td>
+                                <i class="fas fa-check" style="color: var(--success);"></i>
+                                <span class="limit">(&lt;50)</span>
+                            </td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
+                        </tr>
+
+                        <tr>
+                            <td class="section-header">
+                                <span class="pt">AUTOMAÇÃO DE</span>
+                                <span class="en">AUTOMATION OF</span>
+                            </td>
+                            <td colspan="8" class="section-header">
+                                <span class="pt">ANÁLISES</span>
+                                <span class="en">ANALYSES</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Análises de rotina (Website)</span>
+                                <span class="en">Routine Analysis (Website)</span>
+                            </td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td>
+                                <span class="pt">Semanal</span>
+                                <span class="en">Weekly</span>
+                            </td>
+                            <td>
+                                <span class="pt">Semanal</span>
+                                <span class="en">Weekly</span>
+                            </td>
+                            <td>
+                                <span class="pt">Semanal</span>
+                                <span class="en">Weekly</span>
+                            </td>
+                            <td>
+                                <span class="pt">Semanal</span>
+                                <span class="en">Weekly</span>
+                            </td>
+                            <td>
+                                <span class="pt">Mediático</span>
+                                <span class="en">Mediatic</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Análises de rotina (rede)</span>
+                                <span class="en">Routine Analysis (network)</span>
+                            </td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td>
+                                <span class="pt">Mensal</span>
+                                <span class="en">Monthly</span>
+                            </td>
+                            <td>
+                                <span class="pt">Mensal</span>
+                                <span class="en">Monthly</span>
+                            </td>
+                            <td>
+                                <span class="pt">Semanal</span>
+                                <span class="en">Weekly</span>
+                            </td>
+                            <td>
+                                <span class="pt">Semanal</span>
+                                <span class="en">Weekly</span>
+                            </td>
+                            <td>
+                                <span class="pt">Mediático</span>
+                                <span class="en">Mediatic</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Análise de velocidade (Wi-Fi)</span>
+                                <span class="en">Speed Analysis (Wi-Fi)</span>
+                            </td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td>
+                                <span class="pt">Diária</span>
+                                <span class="en">Daily</span>
+                            </td>
+                            <td>
+                                <span class="pt">Diária</span>
+                                <span class="en">Daily</span>
+                            </td>
+                            <td>
+                                <span class="pt">Diária</span>
+                                <span class="en">Daily</span>
+                            </td>
+                            <td>
+                                <span class="pt">Diária</span>
+                                <span class="en">Daily</span>
+                            </td>
+                            <td>
+                                <span class="pt">Mediático</span>
+                                <span class="en">Mediatic</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="section-header">
+                                <span class="pt">AUTOMAÇÃO DE</span>
+                                <span class="en">AUTOMATION OF</span>
+                            </td>
+                            <td colspan="8" class="section-header">
+                                <span class="pt">CERTIFICAÇÃO</span>
+                                <span class="en">CERTIFICATION</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Wi-Fi (validade: mensal)</span>
+                                <span class="en">Wi-Fi (validity: monthly)</span>
+                            </td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td>20€</td>
+                            <td>220€</td>
+                            <td>20€</td>
+                            <td>220€</td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Base de boas práticas (Software) (validade: mensal)</span>
+                                <span class="en">Best practices base (Software) (validity: monthly)</span>
+                            </td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td>50€</td>
+                            <td>550€</td>
+                            <td>50€</td>
+                            <td>550€</td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Qualidade da Rede (hardware) (validade: anual)</span>
+                                <span class="en">Network Quality (hardware) (validity: annual)</span>
+                            </td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td>350€</td>
+                            <td>350€</td>
+                            <td>1 050€</td>
+                            <td>1 050€</td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="9" class="section-header">
+                                <span class="pt">Ganhos máximos</span>
+                                <span class="en">Maximum earnings</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Max (ano)</span>
+                                <span class="en">Max (year)</span>
+                            </td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td>5 279,88€</td>
+                            <td>1 339,99€</td>
+                            <td>3 449,68€</td>
+                            <td>3 250,00€</td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Max (mês)</span>
+                                <span class="en">Max (month)</span>
+                            </td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td>439,99€</td>
+                            <td>111,67€</td>
+                            <td>287,49€</td>
+                            <td>270,84€</td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Min (ano)</span>
+                                <span class="en">Min (year)</span>
+                            </td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td>239,88€</td>
+                            <td>219,99€</td>
+                            <td>1 559,88€</td>
+                            <td>1 429,99€</td>
+                            <td>5 399,88€</td>
+                            <td>5 499,99€</td>
+                            <td>30 000,00€</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Min (mês)</span>
+                                <span class="en">Min (month)</span>
+                            </td>
+                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
+                            <td>19,99€</td>
+                            <td>18,34€</td>
+                            <td>129,99€</td>
+                            <td>119,17€</td>
+                            <td>449,99€</td>
+                            <td>458,34€</td>
+                            <td>2 500,00€</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        <!-- Table Image 2 -->
-        <div class="table-image-container">
+        <!-- Security Services Table -->
+        <div class="table-container">
             <h3>
-                <span class="pt">Comparação de Frameworks de Segurança</span>
-                <span class="en">Security Framework Comparison</span>
+                <span class="pt">Serviços de Segurança Profissional</span>
+                <span class="en">Professional Security Services</span>
             </h3>
-            <img src="tabela2.png" alt="Security Framework Comparison Table">
-        </div>
+            <div class="security-services-wrapper">
+                <table class="security-services-table">
+                    <thead>
+                        <tr class="header-row">
+                            <th style="width: 35%;">
+                                <span class="pt">Serviço</span>
+                                <span class="en">Service</span>
+                            </th>
+                            <th style="width: 30%;">
+                                <span class="pt">Preço</span>
+                                <span class="en">Price</span>
+                            </th>
+                            <th style="width: 35%;">
+                                <span class="pt">Frequência</span>
+                                <span class="en">Frequency</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span class="pt">Aplicações Web (simples)</span>
+                                <span class="en">Web Applications (simple)</span>
+                            </td>
+                            <td>2 500€ - 5 000€</td>
+                            <td>
+                                <span class="pt">anual ou pós grandes atualizações</span>
+                                <span class="en">annual or after major updates</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Infraestruturas Redes</span>
+                                <span class="en">Network Infrastructures</span>
+                            </td>
+                            <td>4 000€ - 30 000€</td>
+                            <td>
+                                <span class="pt">anual ou pós grandes atualizações</span>
+                                <span class="en">annual or after major updates</span>
+                            </td>
+                        </tr>
 
-        <!-- Table Image 3 -->
-        <div class="table-image-container">
-            <h3>
-                <span class="pt">Comparação de Serviços CyberCrow</span>
-                <span class="en">CyberCrow Service Comparison</span>
-            </h3>
-            <img src="tabela3.png" alt="CyberCrow Service Comparison Table">
+                        <tr class="category-row">
+                            <td>ISO 27001</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Consultadoria</span>
+                                <span class="en">Consultancy</span>
+                            </td>
+                            <td>10 000€ - 30 000€</td>
+                            <td>
+                                <span class="pt">duração 6 a 12 meses</span>
+                                <span class="en">duration 6 to 12 months</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Auditoria de certificação</span>
+                                <span class="en">Certification Audit</span>
+                            </td>
+                            <td>3 000€ - 6 000€</td>
+                            <td>
+                                <span class="pt">ao fim de 6 a 12 meses</span>
+                                <span class="en">at the end of 6 to 12 months</span>
+                            </td>
+                        </tr>
+
+                        <tr class="category-row">
+                            <td>
+                                <span class="pt">Auditoria de conformidade RGPD</span>
+                                <span class="en">GDPR Compliance Audit</span>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Gap Analysis (Diagnóstico)</span>
+                                <span class="en">Gap Analysis (Diagnostic)</span>
+                            </td>
+                            <td>1 500€ - 3 500€+</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Implementação completa</span>
+                                <span class="en">Complete Implementation</span>
+                            </td>
+                            <td>5 000€ - 15 000€+</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">DPO Externo (opcional)</span>
+                                <span class="en">External DPO (optional)</span>
+                            </td>
+                            <td>300€ - 15 000€+</td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span class="pt">Vulnerability Assessment</span>
+                                <span class="en">Vulnerability Assessment</span>
+                            </td>
+                            <td>800€ - 2 000€</td>
+                            <td>
+                                <span class="pt">Pontual</span>
+                                <span class="en">One-time</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Vulnerability Assessment</span>
+                                <span class="en">Vulnerability Assessment</span>
+                            </td>
+                            <td>2 000€ - 5 000€ / ano</td>
+                            <td>
+                                <span class="pt">Anual (SaaS)</span>
+                                <span class="en">Annual (SaaS)</span>
+                            </td>
+                        </tr>
+
+                        <tr class="category-row">
+                            <td>
+                                <span class="pt">Auditoria de segurança Cloud</span>
+                                <span class="en">Cloud Security Audit</span>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Custo médio</span>
+                                <span class="en">Average Cost</span>
+                            </td>
+                            <td>3 000€ - 7 000€</td>
+                            <td></td>
+                        </tr>
+
+                        <tr class="category-row">
+                            <td>NIS 2</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="pt">Diagnóstico e plano de Ação</span>
+                                <span class="en">Diagnostic and Action Plan</span>
+                            </td>
+                            <td>5 000€ - 12 000€</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </section>
 
     <footer>
         <p>
@@ -893,19 +1181,6 @@
         </p>
     </footer>
 
-    <script>
-        function toggleLanguage() {
-            const htmlTag = document.documentElement;
-            const langText = document.getElementById('lang-text');
-            
-            if (htmlTag.getAttribute('lang') === 'pt') {
-                htmlTag.setAttribute('lang', 'en');
-                langText.innerText = 'PT'; // Mostra a opção de voltar para PT
-            } else {
-                htmlTag.setAttribute('lang', 'pt');
-                langText.innerText = 'EN'; // Mostra a opção de mudar para EN
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
