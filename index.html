@@ -3,1184 +3,1396 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberCrow</title>
+    <title><span class="pt">CyberPrTable - Democratizando Cibersegurança para PMEs</span><span class="en">CyberPrTable - Democratizing Cybersecurity for SMEs</span></title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'dark': '#0a0e1a',
+                        'darker': '#050810',
+                        'card': '#1a1f2e',
+                        'accent': '#00ff88',
+                        'electric': '#00d4ff',
+                        'primary': '#00ff88',
+                        'secondary': '#00d4ff',
+                        'danger': '#ff4757',
+                        'warning': '#ffa502',
+                        'success': '#00ff88',
+                    },
+                    animation: {
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(0, 255, 136, 0.3)' },
+                            '100%': { boxShadow: '0 0 30px rgba(0, 255, 136, 0.6)' },
+                        },
+                        float: {
+                            '0%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                            '100%': { transform: 'translateY(0px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #00ff88, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card-glow {
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+        .card-glow:hover {
+            box-shadow: 0 0 60px rgba(0, 255, 136, 0.2);
+            border: 1px solid rgba(0, 255, 136, 0.4);
+        }
+        .popular-badge {
+            background: linear-gradient(135deg, #00ff88, #00d4ff);
+            color: #0a0e1a;
+        }
+        .timeline-dot {
+            background: linear-gradient(135deg, #00ff88, #00d4ff);
+        }
+        .compliance-badge {
+            background: linear-gradient(135deg, #1a1f2e, #2a3f5f);
+            border: 2px solid #00ff88;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 50%, #0a0e1a 100%);
+        }
+        .pricing-gradient {
+            background: linear-gradient(135deg, #00ff88, #00d4ff);
+        }
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .slide-in-up {
+            animation: slideInUp 0.8s ease-out;
+        }
+        
+        /* Language toggle CSS logic - HIGHER SPECIFICITY */
+        html[lang="pt"] .en { 
+            display: none !important; 
+            visibility: hidden !important;
+        }
+        html[lang="en"] .pt { 
+            display: none !important; 
+            visibility: hidden !important;
+        }
+        
+        /* Ensure opposite language is visible */
+        html[lang="pt"] .pt { 
+            display: block !important; 
+            visibility: visible !important;
+        }
+        html[lang="en"] .en { 
+            display: block !important; 
+            visibility: visible !important;
+        }
+        
+        /* Estilo para a imagem do logótipo - movido para logo-styles.css */
+    </style>
 </head>
-<body>
-
-    <nav>
-        <div class="logo">
-            <img src="HLogo3.png" alt="CyberCrow Logo" class="logo-img">
-        </div>
-        <div class="nav-actions">
-            <button class="lang-switch" onclick="toggleLanguage()">
-                <i class="fas fa-globe"></i> <span id="lang-text">EN</span>
-            </button>
+<body class="bg-dark text-white">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-darker/90 backdrop-blur-lg z-50 border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <img src="HLogo3.png" alt="CyberPrTable Logo" class="logo-img">
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="#pricing" class="text-gray-300 hover:text-accent transition"><span class="pt">Preços</span><span class="en">Pricing</span></a>
+                    <a href="#services" class="text-gray-300 hover:text-accent transition"><span class="pt">Serviços</span><span class="en">Services</span></a>
+                    <a href="#legal" class="text-gray-300 hover:text-accent transition"><span class="pt">Legal</span><span class="en">Legal</span></a>
+                    <a href="#certification" class="text-gray-300 hover:text-accent transition"><span class="pt">Certificação</span><span class="en">Certification</span></a>
+                    <a href="#roadmap" class="text-gray-300 hover:text-accent transition"><span class="pt">Roadmap</span><span class="en">Roadmap</span></a>
+                    <button class="lang-switch bg-darker border border-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-700 transition" onclick="toggleLanguage()">
+                        <i class="fas fa-globe"></i> <span id="lang-text">EN</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>
-                <span class="pt">Proteção Digital Inteligente</span>
-                <span class="en">Smart Digital Protection</span>
-            </h1>
-            <div class="hero-tech-grid">
-                <div class="tech-item">
-                    <i class="fas fa-shield-alt"></i>
-                    <span class="tech-label">
-                        <span class="pt">Automação Avançada</span>
-                        <span class="en">Advanced Automation</span>
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center hero-gradient pt-32">
+        <div class="container mx-auto px-6 text-center">
+            <div class="max-w-4xl mx-auto slide-in-up">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                    <span class="gradient-text"><span class="pt gradient-text">Cibersegurança Enterprise</span><span class="en gradient-text">Enterprise Cybersecurity</span></span><br>
+                    <span class="text-white"><span class="pt">para PMEs</span><span class="en">for SMEs</span></span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+                    <span class="pt">
+                        97% das PMEs sofrem ataques cibernéticos porque não conseguem pagar 
+                        <span class="text-danger font-bold">€50K-€500K</span> em auditorias. 
+                        A nossa plataforma SaaS democratiza o acesso a 
+                        <span class="text-accent font-bold">conformidade ISO 27001, RGPD e NIS 2</span> 
+                        por <span class="text-accent font-bold">€129/mês</span>.
                     </span>
-                </div>
-                <div class="tech-item">
-                    <i class="fas fa-brain"></i>
-                    <span class="tech-label">
-                        <span class="pt">IA Preditiva</span>
-                        <span class="en">Predictive AI</span>
+                    <span class="en">
+                        97% of SMEs suffer cyber attacks because they can't afford 
+                        <span class="text-danger font-bold">€50K-€500K</span> in audits. 
+                        Our SaaS platform democratizes access to 
+                        <span class="text-accent font-bold">ISO 27001, GDPR and NIS 2 compliance</span> 
+                        for just <span class="text-accent font-bold">€129/month</span>.
                     </span>
-                </div>
-                <div class="tech-item">
-                    <i class="fas fa-lock"></i>
-                    <span class="tech-label">
-                        <span class="pt">Criptografia Quântica</span>
-                        <span class="en">Quantum Cryptography</span>
-                    </span>
-                </div>
-            </div>
-            <p>
-                <span class="pt">Na era digital, a segurança não é uma opção - é a sua maior vantagem competitiva. O CyberCrow transforma a cibersegurança complexa em poder simples e acessível para o seu negócio crescer com confiança.</span>
-                <span class="en">In digital age, security isn't an option - it's your competitive advantage. CyberCrow transforms complex cybersecurity into simple, accessible power that lets your business grow with confidence.</span>
-            </p>
-        </div>
-    </section>
-
-    <section class="mission-section">
-        <div class="mission-content">
-            <h2>
-                <span class="pt">Segurança de Nível Enterprise, Preço de PME</span>
-                <span class="en">Enterprise-Level Security, SME Price</span>
-            </h2>
-            <p>
-                <span class="pt">Por que é que as PMEs devem escolher entre segurança e crescimento? As grandes corporações gastam milhões em proteção digital, enquanto as pequenas e médias empresas enfrentam as mesmas ameaças com orçamentos limitados.</span>
-                <span class="en">Why should SMEs choose between security and growth? Large corporations spend millions on digital protection, while small and medium enterprises face the same threats with limited budgets.</span>
-            </p>
-            <p>
-                <span class="pt">O <strong>CyberCrow</strong> democratiza a cibersegurança. Fundimos a velocidade da automação com a inteligência de auditorias especializadas, criando um escudo digital que se adapta perfeitamente ao seu negócio.</span>
-                <span class="en"><strong>CyberCrow</strong> democratizes cybersecurity. We fuse the speed of automation with the intelligence of specialized audits, creating a digital shield that perfectly adapts to your business.</span>
-            </p>
-            <p style="color: var(--accent-blue); font-weight: 600;">
-                <i class="fas fa-shield-alt"></i> 
-                <span class="pt">Três pilares para o seu sucesso: Auditoria Inteligente, Certificação Confiável e Capacitação Contínua.</span>
-                <span class="en">Three pillars for your success: Smart Auditing, Trusted Certification, and Continuous Empowerment.</span>
-            </p>
-        </div>
-        <div class="mission-stats">
-            <div class="stat-card">
-                <i class="fas fa-microchip" style="font-size: 2rem; color: #8b949e; margin-bottom: 1rem;"></i>
-                <div class="stat-number">100%</div>
-                <div class="stat-label">
-                    <span class="pt">Autónomo (Node.js)</span>
-                    <span class="en">Autonomous (Node.js)</span>
-                </div>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-brain" style="font-size: 2rem; color: var(--accent-blue); margin-bottom: 1rem;"></i>
-                <div class="stat-number">Groq</div>
-                <div class="stat-label">
-                    <span class="pt">IA Translacional</span>
-                    <span class="en">Translational AI</span>
-                </div>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-database" style="font-size: 2rem; color: #f59e0b; margin-bottom: 1rem;"></i>
-                <div class="stat-number">NIST</div>
-                <div class="stat-label">
-                    <span class="pt">Base de Dados (NVD)</span>
-                    <span class="en">Database (NVD)</span>
-                </div>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-certificate" style="font-size: 2rem; color: var(--success); margin-bottom: 1rem;"></i>
-                <div class="stat-number">Rating</div>
-                <div class="stat-label">
-                    <span class="pt">Certificação Oficial</span>
-                    <span class="en">Official Certification</span>
+                </p>
+                <div class="grid grid-cols-3 gap-8 max-w-2xl mx-auto mt-12">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold gradient-text">€2.5M</div>
+                        <div class="text-gray-400 text-sm"><span class="pt">TAM Portugal</span><span class="en">Portugal TAM</span></div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold gradient-text">85%</div>
+                        <div class="text-gray-400 text-sm"><span class="pt">Margem Bruta</span><span class="en">Gross Margin</span></div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold gradient-text">18mo</div>
+                        <div class="text-gray-400 text-sm"><span class="pt">Break-even</span><span class="en">Break-even</span></div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="services-section">
-        <div class="services-header">
-            <h2>
-                <span class="pt">Segurança que Evolui com o Seu Negócio</span>
-                <span class="en">Security that Evolves with Your Business</span>
-            </h2>
-            <p>
-                <span class="pt">Transformamos a cibersegurança de centro de custo em motor de crescimento, criando valor sustentável para o seu negócio.</span>
-                <span class="en">We transform cybersecurity from a cost center into a growth engine, creating sustainable value for your business.</span>
-            </p>
-        </div>
-
-        <div class="service-row">
-            <div class="service-text">
-                <h3>
-                    <span class="pt">Auditoria Inteligente & Certificação Premium</span>
-                    <span class="en">Smart Auditing & Premium Certification</span>
-                </h3>
-                <p>
-                    <span class="pt">Cada negócio é único. O nosso motor de avaliação aprende a sua arquitetura tecnológica e adapta-se às suas linguagens, frameworks e infraestrutura específicos.</span>
-                    <span class="en">Every business is unique. Our evaluation engine learns your technology architecture and adapts to your specific languages, frameworks, and infrastructure.</span>
-                </p>
-                <p>
-                    <span class="pt">Mapeamos a sua rede em 360°, auditamos criptografia ao nível de implementação e atribuímos um <strong>Security Score</strong> que os seus clientes confiam. Resultado: uma certificação que abre portas e fecha brechas.</span>
-                    <span class="en">We map your network 360°, audit encryption at implementation level, and assign a <strong>Security Score</strong> your clients trust. Result: certification that opens doors and closes gaps.</span>
-                </p>
-            </div>
-            <div class="service-visual">
-                <i class="fas fa-file-contract"></i>
-            </div>
-        </div>
-
-        <div class="service-row">
-            <div class="service-text">
-                <h3>
-                    <span class="pt">Capacitação Avançada da Sua Equipa</span>
-                    <span class="en">Advanced Team Empowerment</span>
-                </h3>
-                <p>
-                    <span class="pt">Encontrar uma vulnerabilidade é o início. Evitar que ela reapareça é onde a mágica acontece. Em vez de gastar fortunas em consultores externos, transformamos a sua equipa numa força de segurança interna.</span>
-                    <span class="en">Finding a vulnerability is just the beginning. Preventing its return is where the magic happens. Instead of spending fortunes on external consultants, we transform your team into an internal security force.</span>
-                </p>
-                <p>
-                    <span class="pt">Com base nas falhas reais que descobrimos, criamos programas de formação sob medida. Sua equipa aprenderá a escrever código seguro por instinto, corrigir erros criptográficos e manter conformidade automaticamente.</span>
-                    <span class="en">Based on the real flaws we discover, we create tailored training programs. Your team will learn to write secure code by instinct, fix cryptographic errors, and maintain compliance automatically.</span>
-                </p>
-            </div>
-            <div class="service-visual">
-                <i class="fas fa-chalkboard-teacher"></i>
-            </div>
-        </div>
-    </section>
-
-    <section class="pillars-section">
-        <div class="pillars-header">
-            <h2>
-                <span class="pt">A Tecnologia por Trás da Sua Proteção</span>
-                <span class="en">The Technology Behind Your Protection</span>
-            </h2>
-            <p>
-                <span class="pt">Inovação cutting-edge que alimenta os nossos serviços de auditoria e consultoria de elite.</span>
-                <span class="en">Cutting-edge innovation powering our elite auditing and consulting services.</span>
-            </p>
-        </div>
-        
-        <div class="pillars-grid">
-            <div class="pillar-card">
-                <div class="pillar-icon"><i class="fas fa-radar"></i></div>
-                <h3>
-                    <span class="pt">Visibilidade 360°</span>
-                    <span class="en">360° Visibility</span>
-                </h3>
-                <p>
-                    <span class="pt">Proteja o que importa. O nosso radar digital mapeia cada ativo da sua rede em tempo real, revelando vulnerabilidades ocultas e fortificando pontos fracos antes que os atacantes os encontrem.</span>
-                    <span class="en">Protect what matters. Our digital radar maps every network asset in real-time, revealing hidden vulnerabilities and fortifying weak points before attackers find them.</span>
+    <!-- Market Pain Point Section -->
+    <section class="py-32 bg-darker">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    <span class="gradient-text"><span class="pt gradient-text">O Custo Real</span><span class="en gradient-text">The Real Cost</span></span> <span class="pt">da Cibersegurança</span><span class="en">of Cybersecurity</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    <span class="pt">O mercado está desequilibrado. PMEs pagam preços de enterprise ou ficam vulneráveis.</span>
+                    <span class="en">The market is broken. SMEs pay enterprise prices or remain vulnerable.</span>
                 </p>
             </div>
             
-            <div class="pillar-card">
-                <div class="pillar-icon"><i class="fas fa-key"></i></div>
-                <h3>
-                    <span class="pt">Criptografia Militar</span>
-                    <span class="en">Military-Grade Cryptography</span>
-                </h3>
-                <p>
-                    <span class="pt">Cifras fortes não são suficientes. Nossos peritos auditam cada linha de implementação criptográfica, garantindo que os seus dados estejam blindados contra as ameaças mais sofisticadas.</span>
-                    <span class="en">Strong ciphers aren't enough. Our experts audit every line of cryptographic implementation, ensuring your data is armored against the most sophisticated threats.</span>
-                </p>
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- Problem Card -->
+                <div class="card-glow bg-card rounded-2xl p-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-danger/20 rounded-full -mr-16 -mt-16"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-danger/20 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-virus text-danger text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-danger"><span class="pt"></span>Ransomware Médio</span><span class="en">Average Ransomware</span></h3>
+                        </div>
+                        <div class="text-4xl font-bold text-danger mb-4">€250.000</div>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-times text-danger mr-3 mt-1"></i>
+                                <span><span class="pt">Downtime médio: 21 dias</span><span class="en">Average downtime: 21 days</span></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times text-danger mr-3 mt-1"></i>
+                                <span><span class="pt">Perda de clientes: 40%</span><span class="en">Customer loss: 40%</span></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times text-danger mr-3 mt-1"></i>
+                                <span><span class="pt">Multa RGPD: até 4% faturamento</span><span class="en">GDPR fine: up to 4% revenue</span></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times text-danger mr-3 mt-1"></i>
+                                <span><span class="pt">Reputação: irreparável</span><span class="en">Reputation: irreparable</span></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Solution Card -->
+                <div class="card-glow bg-card rounded-2xl p-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-accent/20 rounded-full -mr-16 -mt-16"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-shield-alt text-accent text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-accent">CyberPrTable</h3>
+                        </div>
+                        <div class="text-4xl font-bold text-accent mb-4">€129/mês</div>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-accent mr-3 mt-1"></i>
+                                <span><span class="pt">Monitoramento 24/7 automatizado</span><span class="en">Automated 24/7 monitoring</span></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-accent mr-3 mt-1"></i>
+                                <span><span class="pt">Conformidade ISO 27001 garantida</span><span class="en">Guaranteed ISO 27001 compliance</span></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-accent mr-3 mt-1"></i>
+                                <span><span class="pt">Auditorias RGPD incluídas</span><span class="en">GDPR audits included</span></span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-accent mr-3 mt-1"></i>
+                                <span><span class="pt">ROI: 1.900% no primeiro ano</span><span class="en">ROI: 1,900% in first year</span></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            
-            <div class="pillar-card">
-                <div class="pillar-icon"><i class="fas fa-robot"></i></div>
-                <h3>
-                    <span class="pt">Inteligência Artificial Preditiva</span>
-                    <span class="en">Predictive Artificial Intelligence</span>
-                </h3>
-                <p>
-                    <span class="pt">Acabe com o jargão técnico. A nossa IA traduz falhas complexas em impacto de negócio claro, transformando dados confusos em inteligência acionável que protege o seu futuro.</span>
-                    <span class="en">End the technical jargon. Our AI translates complex flaws into clear business impact, turning confusing data into actionable intelligence that protects your future.</span>
-                </p>
-            </div>
-            
-            <div class="pillar-card">
-                <div class="pillar-icon"><i class="fas fa-hands-helping"></i></div>
-                <h3>
-                    <span class="pt">Parceria Estratégica Contínua</span>
-                    <span class="en">Continuous Strategic Partnership</span>
-                </h3>
-                <p>
-                    <span class="pt">A nossa missão não termina no relatório. Se encontrarmos riscos críticos, a nossa equipa trabalha lado a lado com a sua para construir fortalezas digitais que resistem ao teste do tempo.</span>
-                    <span class="en">Our mission doesn't end with the report. If we find critical risks, our team works side-by-side with yours to build digital fortresses that stand the test of time.</span>
-                </p>
+
+            <!-- ROI Calculator -->
+            <div class="mt-16 text-center">
+                <div class="bg-gradient-to-r from-accent/20 to-electric/20 rounded-2xl p-8 max-w-4xl mx-auto border border-accent/30">
+                    <h3 class="text-2xl font-bold mb-6"><span class="pt">Calculadora de ROI</span><span class="en">ROI Calculator</span></h3>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div>
+                            <label class="block text-gray-300 mb-2"><span class="pt">Número de Funcionários</span><span class="en">Number of Employees</span></label>
+                            <input type="number" id="employees" class="w-full bg-card border border-gray-700 rounded-lg px-4 py-2 text-white" placeholder="50" value="50">
+                        </div>
+                        <div>
+                            <label class="block text-gray-300 mb-2"><span class="pt">Faturamento Anual (€)</span><span class="en">Annual Revenue (€)</span></label>
+                            <input type="number" id="revenue" class="w-full bg-card border border-gray-700 rounded-lg px-4 py-2 text-white" placeholder="5000000" value="5000000">
+                        </div>
+                        <div>
+                            <label class="block text-gray-300 mb-2"><span class="pt">Setor</span><span class="en">Sector</span></label>
+                            <select id="sector" class="w-full bg-card border border-gray-700 rounded-lg px-4 py-2 text-white">
+                                <option value="technology"><span class="pt">Tecnologia</span><span class="en">Technology</span></option>
+                                <option value="finance"><span class="pt">Financeiro</span><span class="en">Finance</span></option>
+                                <option value="healthcare"><span class="pt">Saúde</span><span class="en">Healthcare</span></option>
+                                <option value="manufacturing"><span class="pt">Manufatura</span><span class="en">Manufacturing</span></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="roi-results" class="mt-8 hidden">
+                        <!-- Results will be inserted here -->
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="tables-section">
-        <div class="tables-header">
-            <h2>
-                <span class="pt">Inteligência Competitiva em Cibersegurança</span>
-                <span class="en">Competitive Intelligence in Cybersecurity</span>
-            </h2>
-            <p>
-                <span class="pt">Dados estratégicos para posicionar o seu negócio na vanguarda da segurança digital.</span>
-                <span class="en">Strategic data to position your business at the forefront of digital security.</span>
-            </p>
-        </div>
+    <!-- Pricing Cards Section -->
+    <section id="pricing" class="py-32 bg-dark">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    <span class="gradient-text"><span class="pt gradient-text">Planos Escaláveis</span><span class="en gradient-text">Scalable Plans</span></span> <span class="pt">para Cada PME</span><span class="en">for Every SME</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    <span class="pt">De startups a empresas médias, temos o plano perfeito para o seu nível de maturidade</span>
+                    <span class="en">From startups to medium enterprises, we have the perfect plan for your maturity level</span>
+                </p>
+            </div>
 
-        <!-- Table 1: Cybersecurity Maturity Levels -->
-        <div class="table-container">
-            <h3>
-                <span class="pt">Níveis de Maturidade em Cibersegurança</span>
-                <span class="en">Cybersecurity Maturity Levels</span>
-            </h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>
-                            <span class="pt">Nível de Maturidade</span>
-                            <span class="en">Maturity Level</span>
-                        </th>
-                        <th>
-                            <span class="pt">Cibersegurança</span>
-                            <span class="en">Cybersecurity</span>
-                        </th>
-                        <th>
-                            <span class="pt">Ciber-resiliência</span>
-                            <span class="en">Cyber-resilience</span>
-                        </th>
-                        <th>
-                            <span class="pt">Ciber-ataques</span>
-                            <span class="en">Cyber-attacks</span>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="table-highlight">
-                            <span class="pt">Nível 1: Inicial</span>
-                            <span class="en">Level 1: Initial</span>
-                        </td>
-                        <td>
-                            <span class="pt">Reativo</span>
-                            <span class="en">Reactive</span>
-                        </td>
-                        <td>
-                            <span class="pt">Mínima</span>
-                            <span class="en">Minimal</span>
-                        </td>
-                        <td class="table-danger">
-                            <span class="pt">Alta vulnerabilidade</span>
-                            <span class="en">High vulnerability</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="table-highlight">
-                            <span class="pt">Nível 2: Repetitivo</span>
-                            <span class="en">Level 2: Repeatable</span>
-                        </td>
-                        <td>
-                            <span class="pt">Básico</span>
-                            <span class="en">Basic</span>
-                        </td>
-                        <td>
-                            <span class="pt">Limitada</span>
-                            <span class="en">Limited</span>
-                        </td>
-                        <td class="table-warning">
-                            <span class="pt">Vulnerabilidade moderada</span>
-                            <span class="en">Moderate vulnerability</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="table-highlight">
-                            <span class="pt">Nível 3: Definido</span>
-                            <span class="en">Level 3: Defined</span>
-                        </td>
-                        <td>
-                            <span class="pt">Proativo</span>
-                            <span class="en">Proactive</span>
-                        </td>
-                        <td>
-                            <span class="pt">Desenvolvida</span>
-                            <span class="en">Developed</span>
-                        </td>
-                        <td class="table-warning">
-                            <span class="pt">Vulnerabilidade controlada</span>
-                            <span class="en">Controlled vulnerability</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="table-highlight">
-                            <span class="pt">Nível 4: Gerido</span>
-                            <span class="en">Level 4: Managed</span>
-                        </td>
-                        <td>
-                            <span class="pt">Avançado</span>
-                            <span class="en">Advanced</span>
-                        </td>
-                        <td>
-                            <span class="pt">Robusta</span>
-                            <span class="en">Robust</span>
-                        </td>
-                        <td class="table-success">
-                            <span class="pt">Baixa vulnerabilidade</span>
-                            <span class="en">Low vulnerability</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="table-highlight">
-                            <span class="pt">Nível 5: Otimizado</span>
-                            <span class="en">Level 5: Optimized</span>
-                        </td>
-                        <td>
-                            <span class="pt">Preditivo</span>
-                            <span class="en">Predictive</span>
-                        </td>
-                        <td>
-                            <span class="pt">Máxima</span>
-                            <span class="en">Maximum</span>
-                        </td>
-                        <td class="table-success">
-                            <span class="pt">Vulnerabilidade mínima</span>
-                            <span class="en">Minimal vulnerability</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <div class="grid md:grid-cols-4 gap-8 max-w-7xl mx-auto">
+                <!-- Free Plan -->
+                <div class="card-glow bg-card rounded-2xl p-8 hover:scale-105 transition-all duration-300 relative">
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-2">Free</h3>
+                        <div class="text-4xl font-bold mb-4">€0</div>
+                        <p class="text-gray-400 mb-6"><span class="pt"></span>Para testar e validar</span><span class="en">To test and validate</span></p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-3 mt-1"></i>
+                            <span class="text-sm"><span class="pt">Velocidade Wi-Fi</span><span class="en">Wi-Fi Speed</span></span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-3 mt-1"></i>
+                            <span class="text-sm"><span class="pt">Histórico (&lt;10)</span><span class="en">History (&lt;10)</span></span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-gray-600 mr-3 mt-1"></i>
+                            <span class="text-sm text-gray-600"><span class="pt">Scanner de rede</span><span class="en">Network Scanner</span></span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-gray-600 mr-3 mt-1"></i>
+                            <span class="text-sm text-gray-600"><span class="pt">Relatórios PDF</span><span class="en">PDF Reports</span></span>
+                        </li>
+                    </ul>
+                </div>
 
-        <!-- Table 2: Framework Comparison -->
-        <div class="table-container">
-            <h3>
-                <span class="pt">Comparação de Frameworks de Segurança</span>
-                <span class="en">Security Framework Comparison</span>
-            </h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>
-                            <span class="pt">Framework</span>
-                            <span class="en">Framework</span>
-                        </th>
-                        <th>
-                            <span class="pt">Foco Principal</span>
-                            <span class="en">Main Focus</span>
-                        </th>
-                        <th>
-                            <span class="pt">Complexidade</span>
-                            <span class="en">Complexity</span>
-                        </th>
-                        <th>
-                            <span class="pt">Certificação</span>
-                            <span class="en">Certification</span>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="table-highlight">NIST CSF</td>
-                        <td>
-                            <span class="pt">Gestão de risco</span>
-                            <span class="en">Risk management</span>
-                        </td>
-                        <td>
-                            <span class="pt">Média</span>
-                            <span class="en">Medium</span>
-                        </td>
-                        <td class="table-success">
-                            <span class="pt">Oficial</span>
-                            <span class="en">Official</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="table-highlight">ISO 27001</td>
-                        <td>
-                            <span class="pt">Sistema de gestão</span>
-                            <span class="en">Management system</span>
-                        </td>
-                        <td>
-                            <span class="pt">Alta</span>
-                            <span class="en">High</span>
-                        </td>
-                        <td class="table-success">
-                            <span class="pt">Oficial</span>
-                            <span class="en">Official</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="table-highlight">CIS Controls</td>
-                        <td>
-                            <span class="pt">Controlos técnicos</span>
-                            <span class="en">Technical controls</span>
-                        </td>
-                        <td>
-                            <span class="pt">Baixa</span>
-                            <span class="en">Low</span>
-                        </td>
-                        <td class="table-warning">
-                            <span class="pt">Voluntária</span>
-                            <span class="en">Voluntary</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                <!-- Flyght Plan -->
+                <div class="card-glow bg-card rounded-2xl p-8 hover:scale-105 transition-all duration-300 relative">
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-2">Flyght</h3>
+                        <div class="text-4xl font-bold mb-4">€19,99<span class="text-lg text-gray-400">/mês</span></div>
+                        <p class="text-gray-400 mb-6"><span class="pt"></span>Para freelancers e profissionais</span><span class="en">For freelancers and professionals</span></p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-3 mt-1"></i>
+                            <span class="text-sm"><span class="pt">Scanner de rede (5)</span><span class="en">Network Scanner (5)</span></span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-3 mt-1"></i>
+                            <span class="text-sm"><span class="pt">Vulnerabilidades web (1/semana)</span><span class="en">Web vulnerabilities (1/week)</span></span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-3 mt-1"></i>
+                            <span class="text-sm"><span class="pt">Relatórios PDF</span><span class="en">PDF Reports</span></span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-gray-600 mr-3 mt-1"></i>
+                            <span class="text-sm text-gray-600"><span class="pt">Análise de redes</span><span class="en">Network analysis</span></span>
+                        </li>
+                    </ul>
+                </div>
 
-        <!-- Table 3: Service Comparison -->
-        <div class="table-container">
-            <h3>
-                <span class="pt">Comparação de Serviços CyberCrow</span>
-                <span class="en">CyberCrow Service Comparison</span>
-            </h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>
-                            <span class="pt">Serviço</span>
-                            <span class="en">Service</span>
-                        </th>
-                        <th>
-                            <span class="pt">Automação</span>
-                            <span class="en">Automation</span>
-                        </th>
-                        <th>
-                            <span class="pt">Relatório</span>
-                            <span class="en">Reporting</span>
-                        </th>
-                        <th>
-                            <span class="pt">Consultoria</span>
-                            <span class="en">Consultancy</span>
-                        </th>
-                        <th>
-                            <span class="pt">Formação</span>
-                            <span class="en">Training</span>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="table-highlight">
-                            <span class="pt">Auditoria Básica</span>
-                            <span class="en">Basic Audit</span>
-                        </td>
-                        <td class="table-success">100%</td>
-                        <td class="table-success">
-                            <span class="pt">Completo</span>
-                            <span class="en">Complete</span>
-                        </td>
-                        <td class="table-danger">
-                            <span class="pt">Não</span>
-                            <span class="en">No</span>
-                        </td>
-                        <td class="table-danger">
-                            <span class="pt">Não</span>
-                            <span class="en">No</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="table-highlight">
-                            <span class="pt">Auditoria Avançada</span>
-                            <span class="en">Advanced Audit</span>
-                        </td>
-                        <td class="table-success">100%</td>
-                        <td class="table-success">
-                            <span class="pt">Completo</span>
-                            <span class="en">Complete</span>
-                        </td>
-                        <td class="table-success">
-                            <span class="pt">Sim</span>
-                            <span class="en">Yes</span>
-                        </td>
-                        <td class="table-danger">
-                            <span class="pt">Não</span>
-                            <span class="en">No</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="table-highlight">
-                            <span class="pt">Solução Completa</span>
-                            <span class="en">Complete Solution</span>
-                        </td>
-                        <td class="table-success">100%</td>
-                        <td class="table-success">
-                            <span class="pt">Completo</span>
-                            <span class="en">Complete</span>
-                        </td>
-                        <td class="table-success">
-                            <span class="pt">Sim</span>
-                            <span class="en">Yes</span>
-                        </td>
-                        <td class="table-success">
-                            <span class="pt">Sim</span>
-                            <span class="en">Yes</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                <!-- Crow Plan (Popular) -->
+                <div class="card-glow bg-gradient-to-b from-card to-accent/10 rounded-2xl p-8 hover:scale-105 transition-all duration-300 relative border-2 border-accent">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <div class="popular-badge px-4 py-1 rounded-full text-sm font-bold">
+                            <span class="pt">MAIS POPULAR</span><span class="en">MOST POPULAR</span>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <h3 class="text-xl font-bold mb-2">Crow</h3>
+                        <div class="text-4xl font-bold mb-4">€129,99<span class="text-lg text-gray-400">/mês</span></div>
+                        <p class="text-gray-400 mb-6"><span class="pt">O plano perfeito para PMEs</span><span class="en">The perfect plan for SMEs</span></p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-3 mt-1"></i>
+                            <span class="text-sm"><span class="pt">Scanner de rede (50)</span><span class="en">Network Scanner (50)</span></span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-3 mt-1"></i>
+                            <span class="text-sm"><span class="pt">Vulnerabilidades ilimitadas</span><span class="en">Unlimited vulnerabilities</span></span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-3 mt-1"></i>
+                            <span class="text-sm"><span class="pt">Análises automatizadas</span><span class="en">Automated analysis</span></span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-3 mt-1"></i>
+                            <span class="text-sm"><span class="pt">Certificação ISO 27001</span><span class="en">ISO 27001 Certification</span></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Nest Plan -->
+                <div class="card-glow bg-card rounded-2xl p-8 hover:scale-105 transition-all duration-300 relative">
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-2">Nest</h3>
+                        <div class="text-4xl font-bold mb-4">€449,99<span class="text-lg text-gray-400">/mês</span></div>
+                        <p class="text-gray-400 mb-6"><span class="pt">Para empresas médias</span><span class="en">For medium enterprises</span></p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-3 mt-1"></i>
+                            <span class="text-sm"><span class="pt">Scanner ilimitado</span><span class="en">Unlimited Scanner</span></span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-3 mt-1"></i>
+                            <span class="text-sm"><span class="pt">API completa</span><span class="en">Full API</span></span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-3 mt-1"></i>
+                            <span class="text-sm"><span class="pt">Suporte prioritário 24/7</span><span class="en">Priority 24/7 Support</span></span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-3 mt-1"></i>
+                            <span class="text-sm"><span class="pt">Consultoria dedicada</span><span class="en">Dedicated Consulting</span></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Enterprise CTA -->
+            <div class="mt-16 text-center">
+                <div class="bg-gradient-to-r from-accent/20 to-electric/20 rounded-2xl p-8 max-w-4xl mx-auto border border-accent/30">
+                    <h3 class="text-2xl font-bold mb-4">Business Flock</h3>
+                    <p class="text-gray-300 mb-6"><span class="pt">Para grandes organizações e instituições</span><span class="en">For large organizations and institutions</span></p>
+                    <div class="flex items-center justify-center space-x-4">
+                        <span class="text-3xl font-bold gradient-text">&gt;€2.500/mês</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="table-images-section">
-        <div class="table-images-header">
-            <h2>
-                <span class="pt">Visualizações Estratégicas</span>
-                <span class="en">Strategic Visualizations</span>
+    <!-- Services Section -->
+    <section id="services" class="py-32 bg-darker">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    <span class="gradient-text">Serviços Premium</span> de Upselling
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Além da plataforma SaaS, oferecemos serviços especializados para necessidades específicas
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Pentest Service -->
+                <div class="card-glow bg-card rounded-2xl p-8 hover:scale-105 transition-all duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-r from-danger to-warning rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-user-ninja text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4"><span class="pt">Pentest Profissional</span><span class="en">Professional Pentest</span></h3>
+                    <div class="text-3xl font-bold text-accent mb-4">€2.500 - €30.000</div>
+                    <p class="text-gray-300 mb-6"><span class="pt">Testes de invasão completos para aplicações web e infraestruturas de rede</span><span class="en">Complete penetration testing for web applications and network infrastructures</span></p>
+                    <ul class="space-y-2 text-gray-400 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-2 mt-1 text-sm"></i>
+                            <span class="text-sm">Web Apps: €2.5K-5K</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-2 mt-1 text-sm"></i>
+                            <span class="text-sm">Infraestruturas: €4K-30K</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-2 mt-1 text-sm"></i>
+                            <span class="text-sm">Relatório executivo detalhado</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- ISO 27001 Service -->
+                <div class="card-glow bg-card rounded-2xl p-8 hover:scale-105 transition-all duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-r from-accent to-electric rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-certificate text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">ISO 27001</h3>
+                    <div class="text-3xl font-bold text-accent mb-4">€10.000 - €30.000</div>
+                    <p class="text-gray-300 mb-6"><span class="pt">Implementação completa e certificação ISO 27001 para a sua organização</span><span class="en">Complete ISO 27001 implementation and certification for your organization</span></p>
+                    <ul class="space-y-2 text-gray-400 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-2 mt-1 text-sm"></i>
+                            <span class="text-sm">Consultadoria: €10K-30K</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-2 mt-1 text-sm"></i>
+                            <span class="text-sm">Auditoria: €3K-6K</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-2 mt-1 text-sm"></i>
+                            <span class="text-sm">Duração: 6-12 meses</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- GDPR Service -->
+                <div class="card-glow bg-card rounded-2xl p-8 hover:scale-105 transition-all duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-r from-warning to-danger rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4"><span class="pt">RGPD Compliance</span><span class="en">GDPR Compliance</span></h3>
+                    <div class="text-3xl font-bold text-accent mb-4">€1.500 - €15.000</div>
+                    <p class="text-gray-300 mb-6"><span class="pt">Conformidade completa com Regulamento Geral de Proteção de Dados</span><span class="en">Complete compliance with General Data Protection Regulation</span></p>
+                    <ul class="space-y-2 text-gray-400 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-2 mt-1 text-sm"></i>
+                            <span class="text-sm">Gap Analysis: €1.5K-3.5K</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-2 mt-1 text-sm"></i>
+                            <span class="text-sm">Implementação: €5K-15K</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-2 mt-1 text-sm"></i>
+                            <span class="text-sm">DPO Externo: €300-15K/ano</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Scalability Section -->
+    <section class="py-32 bg-dark">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    <span class="gradient-text">Escalabilidade</span> do Modelo SaaS
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Margens elevadas e crescimento exponencial através de automação inteligente
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <!-- Metrics -->
+                <div class="space-y-8">
+                    <div class="card-glow bg-card rounded-2xl p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold">Margem Bruta</h3>
+                            <div class="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-chart-line text-accent"></i>
+                            </div>
+                        </div>
+                        <div class="text-4xl font-bold text-accent mb-2">85%</div>
+                        <p class="text-gray-400">Margem bruta em planos recorrentes</p>
+                        <div class="mt-4 bg-gray-700 rounded-full h-2">
+                            <div class="bg-gradient-to-r from-accent to-electric h-2 rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="card-glow bg-card rounded-2xl p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold">CAC Payback</h3>
+                            <div class="w-12 h-12 bg-electric/20 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-clock text-electric"></i>
+                            </div>
+                        </div>
+                        <div class="text-4xl font-bold text-electric mb-2">4.2 meses</div>
+                        <p class="text-gray-400">Recuperação do custo de aquisição</p>
+                        <div class="mt-4 bg-gray-700 rounded-full h-2">
+                            <div class="bg-gradient-to-r from-electric to-accent h-2 rounded-full" style="width: 70%"></div>
+                        </div>
+                    </div>
+
+                    <div class="card-glow bg-card rounded-2xl p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold">LTV:CAC Ratio</h3>
+                            <div class="w-12 h-12 bg-warning/20 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-infinity text-warning"></i>
+                            </div>
+                        </div>
+                        <div class="text-4xl font-bold text-warning mb-2">8.5:1</div>
+                        <p class="text-gray-400">Razão Lifetime Value vs CAC</p>
+                        <div class="mt-4 bg-gray-700 rounded-full h-2">
+                            <div class="bg-gradient-to-r from-warning to-accent h-2 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Growth Model -->
+                <div class="card-glow bg-card rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold mb-6">Modelo de Crescimento</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-robot text-accent text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-accent mb-2">Automação Inteligente</h4>
+                                <p class="text-gray-400 text-sm">Motor de auditoria automatizado reduz custos operacionais em 90%</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-electric/20 rounded-lg flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-layer-group text-electric text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-electric mb-2">Economia de Rede</h4>
+                                <p class="text-gray-400 text-sm">Cada novo cliente aumenta valor da base de dados de vulnerabilidades</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-warning/20 rounded-lg flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-chart-area text-warning text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-warning mb-2">Upselling Estratégico</h4>
+                                <p class="text-gray-400 text-sm"><span class="pt">35% dos clientes fazem upgrade para serviços premium no primeiro ano</span><span class="en">35% of customers upgrade to premium services in the first year</span></p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-danger/20 rounded-lg flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-globe text-danger text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-danger mb-2">Expansão Global</h4>
+                                <p class="text-gray-400 text-sm">Modelo SaaS permite expansão rápida para novos mercados</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projections -->
+                    <div class="mt-8 bg-gradient-to-r from-accent/20 to-electric/20 rounded-xl p-6 border border-accent/30">
+                        <h4 class="font-bold mb-4">Projeções 5 Anos</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <div class="text-2xl font-bold text-accent">€15M</div>
+                                <div class="text-sm text-gray-400">ARR</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-electric">50K</div>
+                                <div class="text-sm text-gray-400">Clientes</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-warning">€75M</div>
+                                <div class="text-sm text-gray-400">Valuation</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-danger">12</div>
+                                <div class="text-sm text-gray-400">Países</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compliance & Legal Section -->
+    <section id="legal" class="py-32 bg-darker">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    <span class="pt gradient-text">Conformidade Legal</span> 
+                    <span class="en gradient-text">Officer Protection</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    <span class="pt">Como a Lei No. 125/2025 impacta a sua organização e como o CyberPrTable garante a sua proteção</span>
+                    <span class="en">How Law No. 125/2025 impacts your organization and how CyberPrTable guarantees your protection</span>
+                </p>
+            </div>
+
+            <!-- Law Overview -->
+            <div class="card-glow bg-card rounded-2xl p-8 max-w-4xl mx-auto mb-12">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2">Lei No. 125/2025</h3>
+                        <p class="text-gray-400">Marco Legal de Cibersegurança</p>
+                    </div>
+                    <div class="w-16 h-16 bg-gradient-to-r from-warning to-danger rounded-lg flex items-center justify-center">
+                        <i class="fas fa-gavel text-white text-2xl"></i>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="font-bold text-warning mb-4 text-lg">
+                        <span class="pt">Para as Empresas:</span>
+                        <span class="en">For Companies:</span>
+                    </h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-euro-sign text-warning mr-3 mt-1"></i>
+                                <div>
+                                    <span class="font-semibold">Coimas Pesadas:</span>
+                                    <span class="text-gray-400 text-sm">
+                                        <span class="pt">Até €10 milhões ou 4% do volume de negócios</span>
+                                        <span class="en">Up to €10 million or 4% of business volume</span>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-shield-alt text-warning mr-3 mt-1"></i>
+                                <div>
+                                    <span class="font-semibold">Obrigações de Segurança:</span>
+                                    <span class="text-gray-400 text-sm">
+                                        <span class="pt">Implementação obrigatória de medidas técnicas</span>
+                                        <span class="en">Mandatory implementation of technical measures</span>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-clock text-warning mr-3 mt-1"></i>
+                                <div>
+                                    <span class="font-semibold">Prazos Estritos:</span>
+                                    <span class="text-gray-400 text-sm">
+                                        <span class="pt">Cumprimento em 60-180 dias</span>
+                                        <span class="en">Compliance within 60-180 days</span>
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-bold text-danger mb-4 text-lg">
+                        <span class="pt">Para os Responsáveis:</span>
+                        <span class="en">For Responsible Officers:</span>
+                    </h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-user-tie text-danger mr-3 mt-1"></i>
+                                <div>
+                                    <span class="font-semibold">Responsabilidade Pessoal:</span>
+                                    <span class="text-gray-400 text-sm">
+                                        <span class="pt">Responsáveis legais podem ser pessoalmente responsabilizados</span>
+                                        <span class="en">Legal officers can be personally held responsible</span>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-ban text-danger mr-3 mt-1"></i>
+                                <div>
+                                    <span class="font-semibold">Sanções Graves:</span>
+                                    <span class="text-gray-400 text-sm">
+                                        <span class="pt">Proibição de exercer cargos por 2-5 anos</span>
+                                        <span class="en">Prohibition from holding positions for 2-5 years</span>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-exclamation-triangle text-danger mr-3 mt-1"></i>
+                                <div>
+                                    <span class="font-semibold">Due Diligence:</span>
+                                    <span class="text-gray-400 text-sm">
+                                        <span class="pt">Obrigação de demonstrar due diligence</span>
+                                        <span class="en">Obligation to demonstrate due diligence</span>
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CyberPrTable Protection -->
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <div class="card-glow bg-gradient-to-b from-card to-accent/5 rounded-2xl p-8 border border-accent/30">
+                    <div class="w-16 h-16 bg-gradient-to-r from-accent to-electric rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-accent mb-4 text-center">
+                        <span class="pt">Proteção Completa</span>
+                        <span class="en">Complete Protection</span>
+                    </h3>
+                    <p class="text-gray-300 mb-6 text-center">
+                        <span class="pt">O CyberPrTable garante a conformidade total com a Lei n.º 125/2025</span>
+                        <span class="en">CyberPrTable guarantees full compliance with Law No. 125/2025</span>
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">Implementação Garantida:</span>
+                                <span class="text-gray-400 text-sm">
+                                    <span class="pt">Todas as medidas técnicas obrigatórias</span>
+                                    <span class="en">All mandatory technical measures</span>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">Documentação Completa:</span>
+                                <span class="text-gray-400 text-sm">
+                                    <span class="pt">Relatórios para autoridades e due diligence</span>
+                                    <span class="en">Reports for authorities and due diligence</span>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">Monitoramento Contínuo:</span>
+                                <span class="text-gray-400 text-sm">
+                                    <span class="pt">Detecção e resposta em tempo real</span>
+                                    <span class="en">Real-time detection and response</span>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">Formação de Equipa:</span>
+                                <span class="text-gray-400 text-sm">
+                                    <span class="pt">Capacitação para responsáveis e colaboradores</span>
+                                    <span class="en">Training for officers and employees</span>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-glow bg-gradient-to-b from-card to-danger/5 rounded-2xl p-8 border border-danger/30">
+                    <div class="w-16 h-16 bg-gradient-to-r from-warning to-danger rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-user-shield text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-danger mb-4 text-center">
+                        <span class="pt">Proteção de Responsáveis</span>
+                        <span class="en">Officer Protection</span>
+                    </h3>
+                    <p class="text-gray-300 mb-6 text-center">
+                        <span class="pt">Salvaguardamos os responsáveis legais com due diligence automatizada</span>
+                        <span class="en">We protect legal officers with automated due diligence</span>
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-danger mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">Due Diligence Automatizada:</span>
+                                <span class="text-gray-400 text-sm">
+                                    <span class="pt">Prova documental de todas as medidas tomadas</span>
+                                    <span class="en">Documentary proof of all measures taken</span>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-danger mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">Relatórios de Conformidade:</span>
+                                <span class="text-gray-400 text-sm">
+                                    <span class="pt">Documentação para autoridades reguladoras</span>
+                                    <span class="en">Documentation for regulatory authorities</span>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-danger mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">Assessoria Legal:</span>
+                                <span class="text-gray-400 text-sm">
+                                    <span class="pt">Apoio especializado em legislação cibernética</span>
+                                    <span class="en">Specialized support in cyber legislation</span>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-danger mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">Seguro de Responsabilidade:</span>
+                                <span class="text-gray-400 text-sm">
+                                    <span class="pt">Cobertura para responsáveis legais</span>
+                                    <span class="en">Coverage for legal officers</span>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="mt-16 text-center">
+                <div class="bg-gradient-to-r from-warning/20 to-danger/20 rounded-2xl p-8 max-w-4xl mx-auto border border-warning/30">
+                    <h3 class="text-2xl font-bold mb-6">
+                        <span class="gradient-text">Não Arrisque com a Lei n.º 125/2025</span>
+                    </h3>
+                    <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                        <span class="pt"></span>As coimas podem chegar a €10 milhões e os responsáveis TAMBÉM são pessoalmente responsabilizados. </span>
+                        <span class="en">Fines can reach €10 million and officers are ALSO personally held responsible. </span>
+                        <span class="pt">O CyberPrTable oferece proteção completa e documentação que garante a sua defesa legal.</span>
+                        <span class="en">CyberPrTable offers complete protection and documentation that guarantees your legal defense.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certification Section -->
+    <section id="certification" class="py-32 bg-darker">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    
+                        <span class="pt">Certificado de Cibersegurança CyberPrTable</span>
+                        <span class="en">CyberPrTable Cybersecurity Certification</span>
+                    
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    <span class="pt">O nosso certificado próprio de cibersegurança, desenvolvido para PMEs com base nas melhores práticas internacionais</span>
+                    <span class="en">Our own cybersecurity certification, developed for SMEs based on international best practices</span>
+                </p>
+            </div>
+
+            <!-- Certification Overview -->
+            <div class="card-glow bg-card rounded-2xl p-8 max-w-4xl mx-auto mb-12">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2">
+                        <span class="pt">Certificado CyberPrTable</span>
+                        <span class="en">CyberPrTable Certificate</span>
+                    </h3>
+                    <p class="text-gray-400">
+                        <span class="pt">Padrão acessível de segurança para PMEs</span>
+                        <span class="en">Accessible security standard for SMEs</span>
+                    </p>
+                    </div>
+                    <div class="w-16 h-16 bg-gradient-to-r from-accent to-electric rounded-lg flex items-center justify-center">
+                        <i class="fas fa-award text-white text-2xl"></i>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-accent mb-2">4</div>
+                        <div class="text-gray-400 text-sm">
+                            <span class="pt">Módulos</span>
+                            <span class="en">Modules</span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-electric mb-2">100%</div>
+                        <div class="text-gray-400 text-sm">
+                            <span class="pt">Cobertura</span>
+                            <span class="en">Coverage</span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-warning mb-2">90 dias</div>
+                        <div class="text-gray-400 text-sm">
+                            <span class="pt">Implementação</span>
+                            <span class="en">Implementation</span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-danger mb-2">€1.500</div>
+                        <div class="text-gray-400 text-sm">
+                            <span class="pt">Custo Total</span>
+                            <span class="en">Total Cost</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modules Breakdown -->
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- Module 1 -->
+                <div class="card-glow bg-gradient-to-b from-card to-accent/5 rounded-2xl p-8 border border-accent/30">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-accent font-bold">1</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-accent">
+                            <span class="pt">Módulo Obrigatório</span>
+                            <span class="en">Mandatory Module</span>
+                        </h4>
+                        <p class="text-gray-400 text-sm">
+                            <span class="pt">Fundamentos de Segurança</span>
+                            <span class="en">Security Fundamentals</span>
+                        </p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-shield-alt text-accent mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">
+                                    <span class="pt">Identificação de Funções:</span>
+                                    <span class="en">Function Identification:</span>
+                                </span>
+                                <span class="text-gray-400 text-sm">
+                                    <span class="pt"> Mapeamento completo de dependências críticas</span>
+                                    <span class="en"> Complete mapping of critical dependencies</span>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-camera text-accent mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">
+                                    <span class="pt">Snapshots Seguros:</span>
+                                    <span class="en">Secure Snapshots:</span>
+                                </span>
+                                <span class="text-gray-400 text-sm">
+                                    <span class="pt"> Backup automatizado e validação de integridade</span>
+                                    <span class="en"> Automated backup and integrity validation</span>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-sync text-accent mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">
+                                    <span class="pt">Updates Automáticos:</span>
+                                    <span class="en">Automatic Updates:</span>
+                                </span>
+                                <span class="text-gray-400 text-sm">
+                                    <span class="pt">Software e OS mantidos em versões seguras</span>
+                                    <span class="en">Software and OS maintained in secure versions</span>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Module 2 -->
+                <div class="card-glow bg-card rounded-2xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-electric/20 rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-electric font-bold">2</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-electric">Módulo 30%</h4>
+                            <p class="text-gray-400 text-sm">Proteção Avançada</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-key text-electric mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">MFA-2:</span>
+                                <span class="text-gray-400 text-sm"> Autenticação multifator obrigatória</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope-shield text-electric mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">Anti-Phishing:</span>
+                                <span class="text-gray-400 text-sm"> Filtragem e análise avançada de emails</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-network-wired text-electric mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">Inventário de Rede:</span>
+                                <span class="text-gray-400 text-sm"> Mapeamento completo de ativos e arquitetura</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-virus-slash text-electric mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">Proteção Endpoint:</span>
+                                <span class="text-gray-400 text-sm"> Antivírus em todos os dispositivos</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Module 3 -->
+                <div class="card-glow bg-card rounded-2xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-warning/20 rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-warning font-bold">3</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-warning">Módulo 30%</h4>
+                            <p class="text-gray-400 text-sm">Governança e Perímetro</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-book text-warning mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">Políticas de Uso:</span>
+                                <span class="text-gray-400 text-sm"> Linhas de uso seguro de recursos TIC</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-user-shield text-warning mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">Responsável de Segurança:</span>
+                                <span class="text-gray-400 text-sm"> Designação e capacitação interna</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-firewall text-warning mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">Proteção Perimetral:</span>
+                                <span class="text-gray-400 text-sm"> Firewall, configurações e segurança física</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Module 4 -->
+                <div class="card-glow bg-gradient-to-b from-card to-danger/5 rounded-2xl p-8 border border-danger/30">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-danger/20 rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-danger font-bold">4</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-danger">Módulo 40%</h4>
+                            <p class="text-gray-400 text-sm">Formação e Consciencialização</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-graduation-cap text-danger mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">Formação de Políticas:</span>
+                                <span class="text-gray-400 text-sm"> Plano de formação sobre segurança implementada</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-users text-danger mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">Ciberhigiene:</span>
+                                <span class="text-gray-400 text-sm"> Formação para todos os colaboradores</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-bullhorn text-danger mr-3 mt-1"></i>
+                            <div>
+                                <span class="font-semibold">Plano de Comunicação:</span>
+                                <span class="text-gray-400 text-sm"> Canais fidedignos e monitorização de ameaças</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Certification Benefits -->
+            <div class="mt-16 text-center">
+                <div class="bg-gradient-to-r from-accent/20 to-electric/20 rounded-2xl p-8 max-w-4xl mx-auto border border-accent/30">
+                    <h3 class="text-2xl font-bold mb-6">Por que escolher CyberPrTable Certification?</h3>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div>
+                            <div class="w-16 h-16 bg-accent/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-euro-sign text-accent text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">90% Mais Acessível</h4>
+                            <p class="text-gray-400 text-sm">vs certificações tradicionais</p>
+                        </div>
+                        <div>
+                            <div class="w-16 h-16 bg-electric/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-clock text-electric text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">Implementação Rápida</h4>
+                            <p class="text-gray-400 text-sm">90 dias vs 12+ meses</p>
+                        </div>
+                        <div>
+                            <div class="w-16 h-16 bg-warning/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-chart-line text-warning text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">ROI Comprovado</h4>
+                            <p class="text-gray-400 text-sm">Redução de 85% em incidentes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap & Compliance Section -->
+    <section id="roadmap" class="py-32 bg-darker">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    <span class="gradient-text">Roadmap</span> e Conformidade
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Trajetória clara de crescimento e compliance regulatório
+                </p>
+            </div>
+
+            <!-- Timeline -->
+            <div class="max-w-4xl mx-auto mb-16">
+                <div class="relative">
+                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-accent to-electric"></div>
+                    
+                    <!-- Q1 2026 -->
+                    <div class="flex items-center mb-12">
+                        <div class="w-1/2 text-right pr-8">
+                            <div class="card-glow bg-card rounded-xl p-6 inline-block text-left">
+                                <h3 class="font-bold text-accent mb-2">Q1 2026</h3>
+                                <h4 class="font-bold mb-2">Lançamento MVP</h4>
+                                <p class="text-gray-400 text-sm">Plataforma básica com auditorias automatizadas</p>
+                            </div>
+                        </div>
+                        <div class="w-8 h-8 bg-accent rounded-full border-4 border-dark absolute left-1/2 transform -translate-x-1/2"></div>
+                        <div class="w-1/2"></div>
+                    </div>
+
+                    <!-- Q2 2026 -->
+                    <div class="flex items-center mb-12">
+                        <div class="w-1/2"></div>
+                        <div class="w-8 h-8 bg-electric rounded-full border-4 border-dark absolute left-1/2 transform -translate-x-1/2"></div>
+                        <div class="w-1/2 pl-8">
+                            <div class="card-glow bg-card rounded-xl p-6 inline-block text-left">
+                                <h3 class="font-bold text-electric mb-2">Q2 2026</h3>
+                                <h4 class="font-bold mb-2">Série Seed</h4>
+                                <p class="text-gray-400 text-sm">€500K • Expansão equipa • Marketing</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q3 2026 -->
+                    <div class="flex items-center mb-12">
+                        <div class="w-1/2 text-right pr-8">
+                            <div class="card-glow bg-card rounded-xl p-6 inline-block text-left">
+                                <h3 class="font-bold text-warning mb-2">Q3 2026</h3>
+                                <h4 class="font-bold mb-2">ISO 27001</h4>
+                                <p class="text-gray-400 text-sm">Certificação própria • Expansão UE</p>
+                            </div>
+                        </div>
+                        <div class="w-8 h-8 bg-warning rounded-full border-4 border-dark absolute left-1/2 transform -translate-x-1/2"></div>
+                        <div class="w-1/2"></div>
+                    </div>
+
+                    <div class="flex items-center mb-12">
+                        <div class="w-1/2"></div>
+                        <div class="w-8 h-8 bg-danger rounded-full border-4 border-dark absolute left-1/2 transform -translate-x-1/2"></div>
+                        <div class="w-1/2 pl-8">
+                            <div class="card-glow bg-card rounded-xl p-6 inline-block text-left">
+                                <h3 class="font-bold text-danger mb-2">Q4 2026</h3>
+                                <h4 class="font-bold mb-2">Série A</h4>
+                                <p class="text-gray-400 text-sm">€5M • Global expansion • Enterprise</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compliance Badges -->
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-8">Conformidade Regulatória</h3>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <div class="compliance-badge rounded-xl p-6 flex flex-col items-center">
+                        <div class="w-16 h-16 bg-accent/20 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-certificate text-accent text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold mb-2">ISO 27001</h4>
+                        <p class="text-gray-400 text-sm">Em progresso</p>
+                        <div class="mt-2 bg-gray-700 rounded-full h-2 w-32">
+                            <div class="bg-accent h-2 rounded-full" style="width: 65%"></div>
+                        </div>
+                    </div>
+
+                    <div class="compliance-badge rounded-xl p-6 flex flex-col items-center">
+                        <div class="w-16 h-16 bg-electric/20 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-shield-alt text-electric text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold mb-2">RGPD</h4>
+                        <p class="text-gray-400 text-sm">Conforme</p>
+                        <div class="mt-2 bg-gray-700 rounded-full h-2 w-32">
+                            <div class="bg-electric h-2 rounded-full" style="width: 100%"></div>
+                        </div>
+                    </div>
+
+                    <div class="compliance-badge rounded-xl p-6 flex flex-col items-center">
+                        <div class="w-16 h-16 bg-warning/20 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-gavel text-warning text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold mb-2">NIS 2</h4>
+                        <p class="text-gray-400 text-sm">Planeado Q3 2026</p>
+                        <div class="mt-2 bg-gray-700 rounded-full h-2 w-32">
+                            <div class="bg-warning h-2 rounded-full" style="width: 30%"></div>
+                        </div>
+                    </div>
+
+                    <div class="compliance-badge rounded-xl p-6 flex flex-col items-center">
+                        <div class="w-16 h-16 bg-danger/20 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-lock text-danger text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold mb-2">SOC 2</h4>
+                        <p class="text-gray-400 text-sm">Planeado 2026</p>
+                        <div class="mt-2 bg-gray-700 rounded-full h-2 w-32">
+                            <div class="bg-danger h-2 rounded-full" style="width: 10%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-32 bg-gradient-to-r from-accent/20 to-electric/20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-4">
+                <span class="gradient-text">Invista na Segurança</span> do Futuro
             </h2>
-            <p>
-                <span class="pt">Insights visuais que transformam dados complexos em estratégias acionáveis para o seu negócio.</span>
-                <span class="en">Visual insights that transform complex data into actionable strategies for your business.</span>
+            <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                Junte-se a nós na missão de democratizar cibersegurança para todas as PMEs
             </p>
         </div>
+    </section>
 
-        <!-- Pricing Plans Table -->
-        <div class="table-container">
-            <h3>
-                <span class="pt">Planos e Preços</span>
-                <span class="en">Plans and Pricing</span>
-            </h3>
-            <div class="pricing-table-wrapper">
-                <table class="pricing-table">
-                    <thead>
-                        <tr>
-                            <th>
-                                <span class="pt">Planos</span>
-                                <span class="en">Plans</span>
-                            </th>
-                            <th>p1</th>
-                            <th>p2 (<span class="pt">Mensal</span><span class="en">Monthly</span>)</th>
-                            <th>p2 (<span class="pt">Anual</span><span class="en">Annual</span>)</th>
-                            <th>p3 (<span class="pt">Mensal</span><span class="en">Monthly</span>)</th>
-                            <th>p3 (<span class="pt">Anual</span><span class="en">Annual</span>)</th>
-                            <th>p4 (<span class="pt">Mensal</span><span class="en">Monthly</span>)</th>
-                            <th>p4 (<span class="pt">Anual</span><span class="en">Annual</span>)</th>
-                            <th>p5</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="highlight">
-                            <td><strong>
-                                <span class="pt">Nome</span>
-                                <span class="en">Name</span>
-                            </strong></td>
-                            <td>Free</td>
-                            <td>Flyght</td>
-                            <td>Flyght</td>
-                            <td>Crow</td>
-                            <td>Crow</td>
-                            <td>Nest</td>
-                            <td>Nest</td>
-                            <td>Business Flock</td>
-                        </tr>
-                        <tr>
-                            <td><strong>
-                                <span class="pt">Preço</span>
-                                <span class="en">Price</span>
-                            </strong></td>
-                            <td>0€</td>
-                            <td>19,99€</td>
-                            <td>219,99€</td>
-                            <td>129,99€</td>
-                            <td>1 429,99€</td>
-                            <td>449,99€</td>
-                            <td>5 499,99€</td>
-                            <td>(> 2 500€) <span class="pt">Ao infinito e mais além</span><span class="en">To infinity and beyond</span></td>
-                        </tr>
-                        <tr class="highlight">
-                            <td><strong>
-                                <span class="pt">Alvo</span>
-                                <span class="en">Target</span>
-                            </strong></td>
-                            <td>
-                                <span class="pt">Utilizador Doméstico / Estudante</span>
-                                <span class="en">Home User / Student</span>
-                            </td>
-                            <td>
-                                <span class="pt">Profissional de TI / Freelancer</span>
-                                <span class="en">IT Professional / Freelancer</span>
-                            </td>
-                            <td>
-                                <span class="pt">Profissional de TI / Freelancer</span>
-                                <span class="en">IT Professional / Freelancer</span>
-                            </td>
-                            <td>
-                                <span class="pt">Profissional Avançado / Pequenas Empresas</span>
-                                <span class="en">Advanced Professional / Small Businesses</span>
-                            </td>
-                            <td>
-                                <span class="pt">Profissional Avançado / Pequenas Empresas</span>
-                                <span class="en">Advanced Professional / Small Businesses</span>
-                            </td>
-                            <td>
-                                <span class="pt">Médias/Grandes Empresas (&lt;100 Emp.)</span>
-                                <span class="en">Medium/Large Companies (&lt;100 Emp.)</span>
-                            </td>
-                            <td>
-                                <span class="pt">Médias/Grandes Empresas (&lt;100 Emp.)</span>
-                                <span class="en">Medium/Large Companies (&lt;100 Emp.)</span>
-                            </td>
-                            <td>
-                                <span class="pt">Médias e Grandes Organizações / Instituições de Ensino (&gt;100 Emp.)</span>
-                                <span class="en">Medium and Large Organizations / Educational Institutions (&gt;100 Emp.)</span>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="9" class="section-header">
-                                <span class="pt">FUNÇÕES</span>
-                                <span class="en">FEATURES</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Velocidade de wi-fi</span>
-                                <span class="en">Wi-Fi speed</span>
-                            </td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Histórico de velocidade</span>
-                                <span class="en">Speed history</span>
-                            </td>
-                            <td>
-                                <i class="fas fa-check" style="color: var(--success);"></i>
-                                <span class="limit">(&lt;10)</span>
-                            </td>
-                            <td>
-                                <i class="fas fa-check" style="color: var(--success);"></i>
-                                <span class="limit">(&lt;50)</span>
-                            </td>
-                            <td>
-                                <i class="fas fa-check" style="color: var(--success);"></i>
-                                <span class="limit">(&lt;50)</span>
-                            </td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Scanner de Rede</span>
-                                <span class="en">Network Scanner</span>
-                            </td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td>
-                                <i class="fas fa-check" style="color: var(--success);"></i>
-                                <span class="limit">(5)</span>
-                            </td>
-                            <td>
-                                <i class="fas fa-check" style="color: var(--success);"></i>
-                                <span class="limit">(5)</span>
-                            </td>
-                            <td>
-                                <i class="fas fa-check" style="color: var(--success);"></i>
-                                <span class="limit">(50)</span>
-                            </td>
-                            <td>
-                                <i class="fas fa-check" style="color: var(--success);"></i>
-                                <span class="limit">(50)</span>
-                            </td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Análise de Vulnerabilidades (Websites)</span>
-                                <span class="en">Vulnerability Analysis (Websites)</span>
-                            </td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td>
-                                <i class="fas fa-check" style="color: var(--success);"></i>
-                                <span class="limit">(1/week)</span>
-                            </td>
-                            <td>
-                                <i class="fas fa-check" style="color: var(--success);"></i>
-                                <span class="limit">(1/week)</span>
-                            </td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Análise de Vulnerabilidades (Redes)</span>
-                                <span class="en">Vulnerability Analysis (Networks)</span>
-                            </td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td>
-                                <i class="fas fa-check" style="color: var(--success);"></i>
-                                <span class="limit">(1/week)</span>
-                            </td>
-                            <td>
-                                <i class="fas fa-check" style="color: var(--success);"></i>
-                                <span class="limit">(1/week)</span>
-                            </td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Relatórios PDF</span>
-                                <span class="en">PDF Reports</span>
-                            </td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Histórico de análises</span>
-                                <span class="en">Analysis History</span>
-                            </td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td>
-                                <i class="fas fa-check" style="color: var(--success);"></i>
-                                <span class="limit">(&lt;5)</span>
-                            </td>
-                            <td>
-                                <i class="fas fa-check" style="color: var(--success);"></i>
-                                <span class="limit">(&lt;5)</span>
-                            </td>
-                            <td>
-                                <i class="fas fa-check" style="color: var(--success);"></i>
-                                <span class="limit">(&lt;50)</span>
-                            </td>
-                            <td>
-                                <i class="fas fa-check" style="color: var(--success);"></i>
-                                <span class="limit">(&lt;50)</span>
-                            </td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                            <td><i class="fas fa-check" style="color: var(--success);"></i></td>
-                        </tr>
-
-                        <tr>
-                            <td class="section-header">
-                                <span class="pt">AUTOMAÇÃO DE</span>
-                                <span class="en">AUTOMATION OF</span>
-                            </td>
-                            <td colspan="8" class="section-header">
-                                <span class="pt">ANÁLISES</span>
-                                <span class="en">ANALYSES</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Análises de rotina (Website)</span>
-                                <span class="en">Routine Analysis (Website)</span>
-                            </td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td>
-                                <span class="pt">Semanal</span>
-                                <span class="en">Weekly</span>
-                            </td>
-                            <td>
-                                <span class="pt">Semanal</span>
-                                <span class="en">Weekly</span>
-                            </td>
-                            <td>
-                                <span class="pt">Semanal</span>
-                                <span class="en">Weekly</span>
-                            </td>
-                            <td>
-                                <span class="pt">Semanal</span>
-                                <span class="en">Weekly</span>
-                            </td>
-                            <td>
-                                <span class="pt">Mediático</span>
-                                <span class="en">Mediatic</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Análises de rotina (rede)</span>
-                                <span class="en">Routine Analysis (network)</span>
-                            </td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td>
-                                <span class="pt">Mensal</span>
-                                <span class="en">Monthly</span>
-                            </td>
-                            <td>
-                                <span class="pt">Mensal</span>
-                                <span class="en">Monthly</span>
-                            </td>
-                            <td>
-                                <span class="pt">Semanal</span>
-                                <span class="en">Weekly</span>
-                            </td>
-                            <td>
-                                <span class="pt">Semanal</span>
-                                <span class="en">Weekly</span>
-                            </td>
-                            <td>
-                                <span class="pt">Mediático</span>
-                                <span class="en">Mediatic</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Análise de velocidade (Wi-Fi)</span>
-                                <span class="en">Speed Analysis (Wi-Fi)</span>
-                            </td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td>
-                                <span class="pt">Diária</span>
-                                <span class="en">Daily</span>
-                            </td>
-                            <td>
-                                <span class="pt">Diária</span>
-                                <span class="en">Daily</span>
-                            </td>
-                            <td>
-                                <span class="pt">Diária</span>
-                                <span class="en">Daily</span>
-                            </td>
-                            <td>
-                                <span class="pt">Diária</span>
-                                <span class="en">Daily</span>
-                            </td>
-                            <td>
-                                <span class="pt">Mediático</span>
-                                <span class="en">Mediatic</span>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="section-header">
-                                <span class="pt">AUTOMAÇÃO DE</span>
-                                <span class="en">AUTOMATION OF</span>
-                            </td>
-                            <td colspan="8" class="section-header">
-                                <span class="pt">CERTIFICAÇÃO</span>
-                                <span class="en">CERTIFICATION</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Wi-Fi (validade: mensal)</span>
-                                <span class="en">Wi-Fi (validity: monthly)</span>
-                            </td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td>20€</td>
-                            <td>220€</td>
-                            <td>20€</td>
-                            <td>220€</td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Base de boas práticas (Software) (validade: mensal)</span>
-                                <span class="en">Best practices base (Software) (validity: monthly)</span>
-                            </td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td>50€</td>
-                            <td>550€</td>
-                            <td>50€</td>
-                            <td>550€</td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Qualidade da Rede (hardware) (validade: anual)</span>
-                                <span class="en">Network Quality (hardware) (validity: annual)</span>
-                            </td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td>350€</td>
-                            <td>350€</td>
-                            <td>1 050€</td>
-                            <td>1 050€</td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="9" class="section-header">
-                                <span class="pt">Ganhos máximos</span>
-                                <span class="en">Maximum earnings</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Max (ano)</span>
-                                <span class="en">Max (year)</span>
-                            </td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td>5 279,88€</td>
-                            <td>1 339,99€</td>
-                            <td>3 449,68€</td>
-                            <td>3 250,00€</td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Max (mês)</span>
-                                <span class="en">Max (month)</span>
-                            </td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td>439,99€</td>
-                            <td>111,67€</td>
-                            <td>287,49€</td>
-                            <td>270,84€</td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Min (ano)</span>
-                                <span class="en">Min (year)</span>
-                            </td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td>239,88€</td>
-                            <td>219,99€</td>
-                            <td>1 559,88€</td>
-                            <td>1 429,99€</td>
-                            <td>5 399,88€</td>
-                            <td>5 499,99€</td>
-                            <td>30 000,00€</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Min (mês)</span>
-                                <span class="en">Min (month)</span>
-                            </td>
-                            <td><i class="fas fa-times" style="color: var(--danger);"></i></td>
-                            <td>19,99€</td>
-                            <td>18,34€</td>
-                            <td>129,99€</td>
-                            <td>119,17€</td>
-                            <td>449,99€</td>
-                            <td>458,34€</td>
-                            <td>2 500,00€</td>
-                        </tr>
-                    </tbody>
-                </table>
+    <!-- Footer -->
+    <footer class="bg-darker border-t border-gray-800 py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <img src="HLogo3.png" alt="CyberPrTable Logo" class="w-6 h-6 rounded-lg object-contain">
+                    <span class="text-lg font-bold">CyberPrTable</span>
+                </div>
+                <div class="text-gray-400 text-sm">
+                    2026 CyberPrTable. Todos os direitos reservados. | 
+                    <a href="#" class="text-accent hover:underline">Privacidade</a> | 
+                    <a href="#" class="text-accent hover:underline">Termos</a>
+                </div>
             </div>
         </div>
-
-        <!-- Security Services Table -->
-        <div class="table-container">
-            <h3>
-                <span class="pt">Serviços de Segurança Profissional</span>
-                <span class="en">Professional Security Services</span>
-            </h3>
-            <div class="security-services-wrapper">
-                <table class="security-services-table">
-                    <thead>
-                        <tr class="header-row">
-                            <th style="width: 35%;">
-                                <span class="pt">Serviço</span>
-                                <span class="en">Service</span>
-                            </th>
-                            <th style="width: 30%;">
-                                <span class="pt">Preço</span>
-                                <span class="en">Price</span>
-                            </th>
-                            <th style="width: 35%;">
-                                <span class="pt">Frequência</span>
-                                <span class="en">Frequency</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <span class="pt">Aplicações Web (simples)</span>
-                                <span class="en">Web Applications (simple)</span>
-                            </td>
-                            <td>2 500€ - 5 000€</td>
-                            <td>
-                                <span class="pt">anual ou pós grandes atualizações</span>
-                                <span class="en">annual or after major updates</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Infraestruturas Redes</span>
-                                <span class="en">Network Infrastructures</span>
-                            </td>
-                            <td>4 000€ - 30 000€</td>
-                            <td>
-                                <span class="pt">anual ou pós grandes atualizações</span>
-                                <span class="en">annual or after major updates</span>
-                            </td>
-                        </tr>
-
-                        <tr class="category-row">
-                            <td>ISO 27001</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Consultadoria</span>
-                                <span class="en">Consultancy</span>
-                            </td>
-                            <td>10 000€ - 30 000€</td>
-                            <td>
-                                <span class="pt">duração 6 a 12 meses</span>
-                                <span class="en">duration 6 to 12 months</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Auditoria de certificação</span>
-                                <span class="en">Certification Audit</span>
-                            </td>
-                            <td>3 000€ - 6 000€</td>
-                            <td>
-                                <span class="pt">ao fim de 6 a 12 meses</span>
-                                <span class="en">at the end of 6 to 12 months</span>
-                            </td>
-                        </tr>
-
-                        <tr class="category-row">
-                            <td>
-                                <span class="pt">Auditoria de conformidade RGPD</span>
-                                <span class="en">GDPR Compliance Audit</span>
-                            </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Gap Analysis (Diagnóstico)</span>
-                                <span class="en">Gap Analysis (Diagnostic)</span>
-                            </td>
-                            <td>1 500€ - 3 500€+</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Implementação completa</span>
-                                <span class="en">Complete Implementation</span>
-                            </td>
-                            <td>5 000€ - 15 000€+</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">DPO Externo (opcional)</span>
-                                <span class="en">External DPO (optional)</span>
-                            </td>
-                            <td>300€ - 15 000€+</td>
-                            <td></td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <span class="pt">Vulnerability Assessment</span>
-                                <span class="en">Vulnerability Assessment</span>
-                            </td>
-                            <td>800€ - 2 000€</td>
-                            <td>
-                                <span class="pt">Pontual</span>
-                                <span class="en">One-time</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Vulnerability Assessment</span>
-                                <span class="en">Vulnerability Assessment</span>
-                            </td>
-                            <td>2 000€ - 5 000€ / ano</td>
-                            <td>
-                                <span class="pt">Anual (SaaS)</span>
-                                <span class="en">Annual (SaaS)</span>
-                            </td>
-                        </tr>
-
-                        <tr class="category-row">
-                            <td>
-                                <span class="pt">Auditoria de segurança Cloud</span>
-                                <span class="en">Cloud Security Audit</span>
-                            </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Custo médio</span>
-                                <span class="en">Average Cost</span>
-                            </td>
-                            <td>3 000€ - 7 000€</td>
-                            <td></td>
-                        </tr>
-
-                        <tr class="category-row">
-                            <td>NIS 2</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="pt">Diagnóstico e plano de Ação</span>
-                                <span class="en">Diagnostic and Action Plan</span>
-                            </td>
-                            <td>5 000€ - 12 000€</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-    <footer>
-        <p>
-            &copy; 2026 CyberCrow Security Systems. 
-            <span class="pt">Um projeto académico de excelência em Cibersegurança.</span>
-            <span class="en">An academic project of excellence in Cybersecurity.</span>
-        </p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('slide-in-up');
+                }
+            });
+        });
+
+        // Language toggle functionality
+        function toggleLanguage() {
+            const htmlTag = document.documentElement;
+            const langText = document.getElementById('lang-text');
+            
+            console.log('Current lang:', htmlTag.getAttribute('lang')); // Debug
+            console.log('PT elements found:', document.querySelectorAll('.pt').length); // Debug
+            console.log('EN elements found:', document.querySelectorAll('.en').length); // Debug
+            
+            if (htmlTag.getAttribute('lang') === 'pt') {
+                htmlTag.setAttribute('lang', 'en');
+                langText.innerText = 'PT';
+                console.log('Switched to EN'); // Debug
+                
+                // Hide PT elements and show EN elements
+                document.querySelectorAll('.pt').forEach((el, index) => {
+                    console.log(`Hiding PT element ${index}:`, el); // Debug
+                    el.style.setProperty('display', 'none', 'important');
+                    el.style.setProperty('visibility', 'hidden', 'important');
+                });
+                document.querySelectorAll('.en').forEach((el, index) => {
+                    console.log(`Showing EN element ${index}:`, el); // Debug
+                    el.style.setProperty('display', 'block', 'important');
+                    el.style.setProperty('visibility', 'visible', 'important');
+                });
+            } else {
+                htmlTag.setAttribute('lang', 'pt');
+                langText.innerText = 'EN';
+                console.log('Switched to PT'); // Debug
+                
+                // Hide EN elements and show PT elements
+                document.querySelectorAll('.en').forEach((el, index) => {
+                    console.log(`Hiding EN element ${index}:`, el); // Debug
+                    el.style.setProperty('display', 'none', 'important');
+                    el.style.setProperty('visibility', 'hidden', 'important');
+                });
+                document.querySelectorAll('.pt').forEach((el, index) => {
+                    console.log(`Showing PT element ${index}:`, el); // Debug
+                    el.style.setProperty('display', 'block', 'important');
+                    el.style.setProperty('visibility', 'visible', 'important');
+                });
+            }
+            
+            // Force reflow to ensure changes take effect
+            setTimeout(() => {
+                document.body.style.display = 'none';
+                document.body.offsetHeight; // Trigger reflow
+                document.body.style.display = '';
+            }, 10);
+        }
+    </script>
 </body>
 </html>
